@@ -54,7 +54,7 @@ src/
   template.mjs         # page markup (shared by both languages)
   icons.mjs            # Feather icon set used by the design system
   styles/main.css      # design-system tokens + all styles
-  scripts/main.js      # mobile menu, active nav, reveal-on-scroll, contact form
+  scripts/main.js      # mobile menu, active nav, language switch, contact form
   assets/              # logos, photos, client logos, fonts, favicons
 dist/                  # built site — deploy this folder
 ```

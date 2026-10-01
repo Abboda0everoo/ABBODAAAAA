@@ -29,7 +29,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
     `<p class="eyebrow">${isAr ? `<span class="en" lang="en" dir="ltr">` : ""}${n ? `<span class="eyebrow-num">${esc(n)}</span>` : ""}${esc(text)}${isAr ? "</span>" : ""}</p>`;
 
   const head = (s, id, { title = s.title, lead = s.lead } = {}) => `
-      <header class="sec-head reveal">
+      <header class="sec-head">
         ${eyebrow(s.eyebrow, s.num)}
         <h2 class="sec-title" id="${id}-title">${esc(title)}</h2>
         ${lead ? `<p class="sec-lead">${esc(lead)}</p>` : ""}
@@ -163,7 +163,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
       <a class="btn btn--primary nav-cta" href="#contact">${esc(t.ui.contactCta)}</a>
     </nav>
     <div class="header-actions">
-      <a class="lang-switch" href="${otherPath}" hreflang="${otherLang}" lang="${otherLang}" data-page-link data-lang-switch aria-label="${esc(t.ui.switchAria)}">${icon("globe")}<span>${esc(t.ui.switchShort)}</span></a>
+      <a class="lang-switch" href="${otherPath}" hreflang="${otherLang}" lang="${otherLang}" data-lang-switch aria-label="${esc(t.ui.switchAria)}">${icon("globe")}<span>${esc(t.ui.switchShort)}</span></a>
       <a class="btn btn--primary btn--sm header-cta" href="#contact">${esc(t.ui.contactCta)}</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="${esc(t.ui.menu)}" data-label-open="${esc(t.ui.menu)}" data-label-close="${esc(t.ui.close)}">${icon("menu", "i-open")}${icon("x", "i-close")}</button>
     </div>
@@ -199,11 +199,11 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
     <div class="container about-grid">
       <div>
         ${head(s.about, "about", { title: s.about.subtitle, lead: null })}
-        <div class="prose reveal">
+        <div class="prose">
           ${s.about.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("\n          ")}
         </div>
       </div>
-      <ul class="pillars reveal" role="list">
+      <ul class="pillars" role="list">
         ${s.about.pillars
           .map(
             (p) => `<li class="pillar">
@@ -220,7 +220,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section section--surface" id="vision" data-nav="about" aria-labelledby="vision-title">
     <div class="container">
       ${head(s.vision, "vision")}
-      <div class="grid grid--3 reveal">
+      <div class="grid grid--3">
         ${card(s.vision.vision, { featured: true })}
         ${card(s.vision.mission)}
         <article class="card card--basic name-card">
@@ -239,16 +239,16 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section section--dark" id="values" data-nav="about" aria-labelledby="values-title">
     <div class="container">
       ${head(s.values, "values")}
-      <div class="grid grid--5 reveal">
+      <div class="grid grid--5">
         ${s.values.items.map((v) => card(v)).join("")}
       </div>
 
       <div class="numbers" id="numbers">
-        <header class="sec-head sec-head--sub reveal">
+        <header class="sec-head sec-head--sub">
           ${eyebrow(s.numbers.eyebrow)}
           <h2 class="sec-title" id="numbers-title">${esc(s.numbers.title)}</h2>
         </header>
-        <ul class="stats reveal" role="list">
+        <ul class="stats" role="list">
           ${s.numbers.items
             .map(
               (n) => `<li class="stat">
@@ -259,7 +259,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
             )
             .join("\n          ")}
         </ul>
-        <div class="served reveal">
+        <div class="served">
           <span class="served-label">${esc(s.numbers.sectorsLabel)}</span>
           <ul class="chips" role="list">
             ${s.numbers.sectors.map((x) => `<li class="chip">${esc(x)}</li>`).join("")}
@@ -273,7 +273,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section" id="sectors" data-nav="sectors" aria-labelledby="sectors-title">
     <div class="container">
       ${head(s.sectors, "sectors")}
-      <div class="grid grid--3 reveal">
+      <div class="grid grid--3">
         ${s.sectors.items.map((x) => card(x)).join("")}
       </div>
     </div>
@@ -283,7 +283,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section section--surface" id="challenges" data-nav="sectors" aria-labelledby="challenges-title">
     <div class="container">
       ${head(s.challenges, "challenges")}
-      <div class="grid grid--3 reveal">
+      <div class="grid grid--3">
         ${s.challenges.items.map((x) => card(x, { plainIcon: true })).join("")}
       </div>
     </div>
@@ -293,7 +293,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section" id="services" data-nav="services" aria-labelledby="services-title">
     <div class="container">
       ${head(s.services, "services")}
-      <div class="grid grid--3 reveal">
+      <div class="grid grid--3">
         ${s.services.items
           .map(
             (x, i) => `
@@ -314,7 +314,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section section--surface" id="marketing" data-nav="services" aria-labelledby="marketing-title">
     <div class="container split">
       <div class="split-head">${head(s.marketing, "marketing")}</div>
-      <div class="features reveal">
+      <div class="features">
         ${s.marketing.items.map(feature).join("")}
       </div>
     </div>
@@ -324,7 +324,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section section--dark" id="deliverables" data-nav="services" aria-labelledby="deliverables-title">
     <div class="container">
       ${head(s.deliverables, "deliverables")}
-      <div class="deliverables reveal">
+      <div class="deliverables">
         <div class="panel">
           <h3 class="panel-title">${esc(s.deliverables.outputsTitle)}</h3>
           ${checklist(s.deliverables.outputs, "checklist--lg")}
@@ -343,7 +343,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section" id="hr" data-nav="services" aria-labelledby="hr-title">
     <div class="container">
       ${head(s.hr, "hr")}
-      <div class="grid grid--4 reveal">
+      <div class="grid grid--4">
         ${s.hr.items.map((x) => card(x, { compact: true })).join("")}
       </div>
     </div>
@@ -353,7 +353,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section section--surface" id="consulting" data-nav="services" aria-labelledby="consulting-title">
     <div class="container">
       ${head(s.consulting, "consulting")}
-      <ol class="grid grid--3 phases reveal" role="list">
+      <ol class="grid grid--3 phases" role="list">
         ${s.consulting.phases
           .map(
             (p, i) => `
@@ -365,7 +365,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
           )
           .join("")}
       </ol>
-      <div class="outputs reveal">
+      <div class="outputs">
         <span class="outputs-label">${esc(s.consulting.outputsLabel)}</span>
         <ul class="chips" role="list">
           ${s.consulting.outputs.map((o) => `<li class="chip">${esc(o)}</li>`).join("")}
@@ -378,7 +378,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section section--dark" id="approach" data-nav="approach" aria-labelledby="approach-title">
     <div class="container">
       ${head(s.approach, "approach")}
-      <ol class="steps reveal" role="list">
+      <ol class="steps" role="list">
         ${s.approach.steps
           .map(
             (st) => `<li class="step">
@@ -395,7 +395,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section" id="models" data-nav="approach" aria-labelledby="models-title">
     <div class="container">
       ${head(s.models, "models")}
-      <div class="grid grid--4 reveal">
+      <div class="grid grid--4">
         ${s.models.items
           .map(
             (m, i) => `
@@ -415,7 +415,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section section--surface" id="why" data-nav="why" aria-labelledby="why-title">
     <div class="container">
       ${head(s.why, "why")}
-      <div class="grid grid--3 reveal">
+      <div class="grid grid--3">
         ${s.why.items.map((x, i) => card(x, { featured: i === 0 })).join("")}
       </div>
     </div>
@@ -425,7 +425,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section" id="leadership" data-nav="why" aria-labelledby="leadership-title">
     <div class="container">
       ${head(s.leadership, "leadership")}
-      <div class="leaders reveal">
+      <div class="leaders">
         ${s.leadership.people
           .map(
             (p) => `
@@ -447,7 +447,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <section class="section section--surface" id="clients" data-nav="clients" aria-labelledby="clients-title">
     <div class="container">
       ${head(s.clients, "clients")}
-      <ul class="logos reveal" role="list">
+      <ul class="logos" role="list">
         ${config.clients
           .map(
             (c) =>
@@ -461,7 +461,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
   <!-- Contact -->
   <section class="section section--dark contact${hasForm ? " contact--form" : ""}" id="contact" data-nav="contact" aria-labelledby="contact-title">
     <div class="container${hasForm ? " contact-grid" : ""}">
-      <div class="contact-copy reveal">
+      <div class="contact-copy">
         ${hasForm ? "" : `<img class="contact-mark" src="${asset("img/logo-mark-dark.webp")}" alt="" width="503" height="485" loading="lazy">`}
         ${eyebrow(s.contact.eyebrow)}
         <h2 class="sec-title" id="contact-title">${esc(s.contact.title)}</h2>
@@ -474,7 +474,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
       ${
         hasForm
           ? `
-      <form class="contact-form panel reveal" data-mailto="${esc(contact.email)}" data-subject="${esc(s.contact.form.subject)}">
+      <form class="contact-form panel" data-mailto="${esc(contact.email)}" data-subject="${esc(s.contact.form.subject)}">
         <h3 class="panel-title">${esc(s.contact.form.title)}</h3>
         <div class="field"><label for="f-name">${esc(s.contact.form.name)}</label><input id="f-name" name="name" autocomplete="name" required></div>
         <div class="field-row">
@@ -524,7 +524,7 @@ export function renderPage({ t, config, base, selfPath, otherPath, otherLang, as
     <div class="footer-bottom">
       <p>© ${num(config.year)} ${esc(s.footer.brand)}. ${esc(s.footer.rights)}</p>
       <div class="footer-bottom-links">
-        <a href="${otherPath}" hreflang="${otherLang}" lang="${otherLang}" data-page-link data-lang-switch>${esc(t.ui.switchLabel)}</a>
+        <a href="${otherPath}" hreflang="${otherLang}" lang="${otherLang}" data-lang-switch>${esc(t.ui.switchLabel)}</a>
         <a href="#top" class="to-top">${esc(t.ui.backToTop)}${icon("arrow-up")}</a>
       </div>
     </div>

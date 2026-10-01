@@ -1,8 +1,5 @@
-// AMPLIQ website — small progressive enhancements. The page works without JS.
+// AMPLIQ website: small progressive enhancements. The page works without JS.
 (() => {
-  const root = document.documentElement;
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
   // ---------- Mobile menu ----------
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.getElementById("site-nav");
@@ -42,15 +39,6 @@
     });
   });
 
-  // Opening the files straight from disk: point folder links at index.html.
-  if (window.location.protocol === "file:") {
-    document.querySelectorAll("[data-page-link]").forEach((a) => {
-      const url = new URL(a.href);
-      if (url.pathname.endsWith("/")) url.pathname += "index.html";
-      a.href = url.href;
-    });
-  }
-
   if (!("IntersectionObserver" in window)) return;
 
   // ---------- Highlight the nav item for the section in view ----------
@@ -71,22 +59,6 @@
     { rootMargin: "-45% 0px -50% 0px" }
   );
   sections.forEach((s) => spy.observe(s));
-
-  // ---------- Reveal on scroll ----------
-  if (!reduceMotion) {
-    root.classList.add("js");
-    const reveal = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target);
-        });
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
-    );
-    document.querySelectorAll(".reveal").forEach((el) => reveal.observe(el));
-  }
 })();
 
 // ---------- Contact form: opens the visitor's email app with the message filled in ----------

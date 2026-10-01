@@ -44,8 +44,8 @@ await writeFile(`${OUT}/assets/js/main.js`, js);
 const assetVersion = createHash("sha256").update(css).update(js).digest("hex").slice(0, 10);
 
 const pages = [
-  { t: ar, file: "index.html", base: "", selfPath: "/", otherPath: "en/", otherLang: "en" },
-  { t: en, file: "en/index.html", base: "../", selfPath: "/en/", otherPath: "../", otherLang: "ar" },
+  { t: ar, file: "index.html", base: "", selfPath: "/", otherPath: "en/index.html", otherLang: "en" },
+  { t: en, file: "en/index.html", base: "../", selfPath: "/en/", otherPath: "../index.html", otherLang: "ar" },
 ];
 for (const p of pages) {
   await writeFile(`${OUT}/${p.file}`, renderPage({ ...p, config: cfg, assetVersion }));
