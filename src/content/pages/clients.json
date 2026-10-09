@@ -1,0 +1,38 @@
+{
+  "ar": {
+    "meta": {
+      "title": "عملاؤنا والقطاعات | Ampliq",
+      "description": "جهات حكومية وتعليمية وإعلامية وشركات رائدة وثقت بخبرات Ampliq، عبر قطاعات الحكومة والتعليم والإعلام والصحة والتجزئة والتقنية."
+    },
+    "hero": {
+      "overline": "OUR CLIENTS",
+      "title": "عملاؤنا والقطاعات",
+      "lead": "نفخر بثقة جهات حكومية وتعليمية وإعلامية وشركات رائدة."
+    },
+    "logos": {
+      "title": "جهات وثقت بخبراتنا"
+    },
+    "numbers": {
+      "overline": "AMPLIQ IN NUMBERS",
+      "title": "خبرة تُقاس بالنتائج"
+    }
+  },
+  "en": {
+    "meta": {
+      "title": "Clients & Sectors | Ampliq",
+      "description": "Government, education and media organizations and leading companies that trusted Ampliq’s expertise, across government, education, media, healthcare, retail and technology."
+    },
+    "hero": {
+      "overline": "OUR CLIENTS",
+      "title": "Clients & sectors",
+      "lead": "We’re proud of the trust of government, education and media organizations and leading companies."
+    },
+    "logos": {
+      "title": "Organizations that trusted our expertise"
+    },
+    "numbers": {
+      "overline": "AMPLIQ IN NUMBERS",
+      "title": "Experience measured by results"
+    }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "ar": {
+    "slug": "web-development",
+    "order": 3,
+    "icon": "code",
+    "overline": "WEB & SOFTWARE DEVELOPMENT",
+    "title": "البرمجة وإنشاء المواقع",
+    "short": "نبني مواقع ومنصات سريعة وآمنة تخدم أهداف عملك.",
+    "points": [
+      "المواقع التعريفية للشركات",
+      "المتاجر الإلكترونية",
+      "صفحات الهبوط للحملات",
+      "الأنظمة ولوحات التحكم",
+      "الاستضافة والدعم والصيانة"
+    ],
+    "meta": {
+      "title": "البرمجة وإنشاء المواقع | Ampliq",
+      "description": "مواقع تعريفية بالعربية والإنجليزية، ومتاجر إلكترونية، وصفحات هبوط، وأنظمة ولوحات تحكم، واستضافة ودعم بعد الإطلاق. خدمة البرمجة وإنشاء المواقع من Ampliq."
+    },
+    "lead": "نبني مواقع ومنصات رقمية سريعة وآمنة، تعكس هويتك وتحوّل الزوار إلى عملاء.",
+    "overview": [
+      "نبني مواقع ومنصات سريعة وآمنة تخدم أهداف عملك. نبدأ بتصميم الواجهات واعتمادها قبل البرمجة، ثم نبني موقعاً متجاوباً بالعربية والإنجليزية، ونربطه بوسائل الدفع وأدوات القياس، وندرّب فريقك على إدارته.",
+      "ولأننا نقدّم التسويق أيضاً، نبني كل صفحة لتخدم الحملات وتُقاس نتائجها منذ اليوم الأول."
+    ],
+    "offer": {
+      "title": "ماذا نقدم",
+      "items": [
+        {
+          "icon": "layout",
+          "title": "المواقع التعريفية للشركات",
+          "text": "مواقع احترافية بالعربية والإنجليزية تعرض خدماتك وتبني الثقة مع عملائك."
+        },
+        {
+          "icon": "shopping-cart",
+          "title": "المتاجر الإلكترونية",
+          "text": "متاجر متكاملة مع بوابات الدفع والشحن وإدارة المنتجات والطلبات."
+        },
+        {
+          "icon": "target",
+          "title": "صفحات الهبوط للحملات",
+          "text": "صفحات سريعة مصممة للتحويل، ومربوطة بأدوات القياس والحملات الإعلانية."
+        },
+        {
+          "icon": "server",
+          "title": "الأنظمة ولوحات التحكم",
+          "text": "أنظمة ويب مخصصة لإدارة العملاء والطلبات والعمليات الداخلية."
+        },
+        {
+          "icon": "pen-tool",
+          "title": "تصميم تجربة وواجهة المستخدم",
+          "text": "نماذج أولية وتصاميم واجهات واضحة قبل البدء في البرمجة."
+        },
+        {
+          "icon": "tool",
+          "title": "الاستضافة والدعم والصيانة",
+          "text": "استضافة موثوقة، وتحديثات دورية، ونسخ احتياطي، ودعم فني بعد الإطلاق."
+        }
+      ]
+    },
+    "results": {
+      "title": "ماذا يحصل عليه العميل؟",
+      "lead": "مخرجات واضحة ومعايير نلتزم بها في كل مشروع.",
+      "outputsTitle": "مخرجات العمل",
+      "outputs": [
+        "تصميم واجهات معتمد قبل بدء البرمجة",
+        "موقع متجاوب مع الجوال بالعربية والإنجليزية",
+        "لوحة تحكم سهلة لإدارة المحتوى",
+        "ربط بوسائل الدفع وأدوات التحليل",
+        "تدريب فريقك على إدارة الموقع",
+        "ضمان ودعم فني بعد الإطلاق"
+      ],
+      "metricsTitle": "معايير نلتزم بها",
+      "metrics": [
+        "سرعة التحميل",
+        "التوافق مع الجوال",
+        "دعم العربية من اليمين",
+        "تهيئة محركات البحث",
+        "الأمان وشهادة SSL",
+        "سهولة الاستخدام",
+        "قابلية التوسع",
+        "ربط أدوات القياس"
+      ]
+    },
+    "faq": [
+      {
+        "q": "هل تبنون المواقع بالعربية والإنجليزية؟",
+        "a": "نعم. نبني مواقع متجاوبة مع الجوال باللغتين، مع دعم كامل للعربية من اليمين إلى اليسار."
+      },
+      {
+        "q": "هل أستطيع تعديل محتوى الموقع بنفسي؟",
+        "a": "نعم. نسلّم لوحة تحكم سهلة لإدارة المحتوى، وندرّب فريقك على إدارة الموقع."
+      },
+      {
+        "q": "هل تربطون المتجر ببوابات الدفع والشحن؟",
+        "a": "نعم. نبني متاجر متكاملة مع بوابات الدفع والشحن وإدارة المنتجات والطلبات."
+      },
+      {
+        "q": "هل يكون الموقع مهيأً لمحركات البحث؟",
+        "a": "نعم. نلتزم في كل مشروع بتهيئة محركات البحث وسرعة التحميل والتوافق مع الجوال وربط أدوات القياس."
+      },
+      {
+        "q": "ماذا يحدث بعد الإطلاق؟",
+        "a": "نقدّم ضماناً ودعماً فنياً بعد الإطلاق، ويمكن التعاقد على الدعم والصيانة: استضافة موثوقة، وتحديثات دورية، ونسخ احتياطي."
+      }
+    ]
+  },
+  "en": {
+    "slug": "web-development",
+    "order": 3,
+    "icon": "code",
+    "overline": "WEB & SOFTWARE DEVELOPMENT",
+    "title": "Web & software development",
+    "short": "We build fast, secure websites and platforms that serve your business goals.",
+    "points": [
+      "Corporate websites",
+      "E-commerce stores",
+      "Campaign landing pages",
+      "Systems & dashboards",
+      "Hosting, support & maintenance"
+    ],
+    "meta": {
+      "title": "Web & Software Development | Ampliq",
+      "description": "Bilingual corporate websites, e-commerce stores, landing pages, custom systems and dashboards, plus hosting and support after launch. Web development by Ampliq."
+    },
+    "lead": "We build fast, secure websites and digital platforms that reflect your identity and turn visitors into customers.",
+    "overview": [
+      "We build fast, secure websites and platforms that serve your business goals. We design and approve the interfaces before writing code, then build a mobile-friendly site in Arabic and English, connect it to payments and analytics, and train your team to run it.",
+      "Because we also do marketing, we build every page to support your campaigns and to be measurable from day one."
+    ],
+    "offer": {
+      "title": "What we offer",
+      "items": [
+        {
+          "icon": "layout",
+          "title": "Corporate websites",
+          "text": "Professional Arabic and English websites that present your services and build trust with your customers."
+        },
+        {
+          "icon": "shopping-cart",
+          "title": "E-commerce stores",
+          "text": "Complete stores with payment gateways, shipping, and product and order management."
+        },
+        {
+          "icon": "target",
+          "title": "Campaign landing pages",
+          "text": "Fast pages designed to convert, connected to analytics tools and ad campaigns."
+        },
+        {
+          "icon": "server",
+          "title": "Systems & dashboards",
+          "text": "Custom web systems for managing customers, orders and internal operations."
+        },
+        {
+          "icon": "pen-tool",
+          "title": "UX & UI design",
+          "text": "Prototypes and clear interface designs before development starts."
+        },
+        {
+          "icon": "tool",
+          "title": "Hosting, support & maintenance",
+          "text": "Reliable hosting, regular updates, backups and technical support after launch."
+        }
+      ]
+    },
+    "results": {
+      "title": "What do you get?",
+      "lead": "Clear deliverables, and standards we commit to on every project.",
+      "outputsTitle": "Deliverables",
+      "outputs": [
+        "Approved interface designs before development starts",
+        "A mobile-friendly website in Arabic and English",
+        "An easy-to-use dashboard for managing content",
+        "Payment and analytics integrations",
+        "Training for your team on running the site",
+        "A warranty and technical support after launch"
+      ],
+      "metricsTitle": "Standards we commit to",
+      "metrics": [
+        "Loading speed",
+        "Mobile compatibility",
+        "Right-to-left Arabic support",
+        "Search engine optimization",
+        "Security & SSL certificate",
+        "Ease of use",
+        "Scalability",
+        "Analytics integration"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Do you build websites in Arabic and English?",
+        "a": "Yes. We build mobile-friendly websites in both languages, with full right-to-left support for Arabic."
+      },
+      {
+        "q": "Can I edit the website content myself?",
+        "a": "Yes. We hand over an easy-to-use dashboard for managing content, and train your team to run the site."
+      },
+      {
+        "q": "Do you connect stores to payment and shipping providers?",
+        "a": "Yes. We build complete stores with payment gateways, shipping, and product and order management."
+      },
+      {
+        "q": "Will the website be optimized for search engines?",
+        "a": "Yes. On every project we commit to search engine optimization, loading speed, mobile compatibility and analytics integration."
+      },
+      {
+        "q": "What happens after launch?",
+        "a": "We provide a warranty and technical support after launch, and you can sign up for support & maintenance: reliable hosting, regular updates and backups."
+      }
+    ]
+  }
+}

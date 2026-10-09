@@ -1,52 +1,21 @@
-// Builds the static Ampliq website into ./dist (no dependencies — Node 18+).
+// Builds the static Ampliq website into ./dist (Node 20+).
 //   Arabic (default, RTL) at the site root, English (LTR) under /en/.
+//   Content lives in src/content/**/*.json and is edited from the dashboard at /admin/.
 
-import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { createHash } from "node:crypto";
-import config from "./src/config.mjs";
-import ar from "./src/content/ar.mjs";
-import en from "./src/content/en.mjs";
-import { relLink, relFile, readMinutes } from "./src/lib.mjs";
+import { loadContent, contentWarnings, LANGS } from "./src/content.mjs";
+import { cmsConfig } from "./src/admin/config.mjs";
+import { relLink, relFile } from "./src/lib.mjs";
 import { renderDocument } from "./src/templates/layout.mjs";
 import * as pages from "./src/templates/pages.mjs";
 
 const OUT = "dist";
-const content = { ar, en };
-const LANGS = ["ar", "en"];
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
-
-// ---------- content checks ----------
-// Both languages must have the same shape, or one site silently loses content.
-function checkParity(a, b, path) {
-  if (Array.isArray(a) !== Array.isArray(b) || typeof a !== typeof b) throw new Error(`ar/en mismatch at ${path}: different types`);
-  if (Array.isArray(a)) {
-    if (a.length !== b.length) throw new Error(`ar/en mismatch at ${path}: ${a.length} vs ${b.length} items`);
-    a.forEach((x, i) => checkParity(x, b[i], `${path}[${i}]`));
-  } else if (a && typeof a === "object") {
-    const ka = Object.keys(a).sort().join();
-    const kb = Object.keys(b).sort().join();
-    if (ka !== kb) throw new Error(`ar/en mismatch at ${path}: keys {${ka}} vs {${kb}}`);
-    Object.keys(a).forEach((k) => checkParity(a[k], b[k], `${path}.${k}`));
-  }
-}
-checkParity(ar, en, "content");
-
-const blogFiles = (await readdir("src/content/blog")).filter((f) => f.endsWith(".mjs")).sort();
-const posts = [];
-for (const f of blogFiles) {
-  const post = (await import(`./src/content/blog/${f}`)).default;
-  checkParity(post.ar, post.en, `blog/${f}`);
-  if (!ar.services.some((s) => s.slug === post.service)) throw new Error(`blog/${f}: unknown service "${post.service}"`);
-  posts.push(post);
-}
-posts.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : a.slug.localeCompare(b.slug)));
-
-for (const lang of LANGS) {
-  const text = JSON.stringify(content[lang]) + JSON.stringify(posts.map((p) => p[lang]));
-  // Persian letters that look Arabic (پ چ ژ گ ک ی) break search and spelling.
-  if (lang === "ar" && /[پچژگکی]/.test(text)) throw new Error("Arabic content contains Persian letters (پ چ ژ گ ک ی)");
-}
+const { content, config } = await loadContent();
+const { siteUrl } = config;
+const posts = content.ar.posts;
 
 // ---------- routes ----------
 const ROUTES = { home: "", about: "about/", services: "services/", clients: "clients/", blog: "blog/", contact: "contact/", privacy: "privacy/", terms: "terms/" };
@@ -57,9 +26,6 @@ const routePath = (lang, key) => {
   if (!(key in ROUTES)) throw new Error(`Unknown route: ${key}`);
   return prefix + ROUTES[key];
 };
-
-const siteUrl = (process.env.SITE_URL || config.siteUrl).replace(/\/+$/, "");
-const cfg = { ...config, siteUrl };
 
 // ---------- assets ----------
 await rm(OUT, { recursive: true, force: true });
@@ -74,41 +40,48 @@ await writeFile(`${OUT}/assets/js/main.js`, js);
 const assetVersion = createHash("sha256").update(css).update(js).digest("hex").slice(0, 10);
 
 // ---------- pages ----------
-const localizedPosts = (lang) =>
-  posts.map((p) => ({
-    slug: p.slug,
-    service: p.service,
-    date: p.date,
-    icon: p.icon,
-    category: content[lang].services.find((s) => s.slug === p.service).title,
-    minutes: readMinutes(p[lang].blocks),
-    ...p[lang],
-  }));
+// Uploaded images are stored as site-absolute paths ("/assets/uploads/x.jpg").
+const isSiteFile = (p) => typeof p === "string" && /^\/[^/]/.test(p);
 
 function makeCtx(lang, key, { absolute = false } = {}) {
   const t = content[lang];
   const otherLang = lang === "ar" ? "en" : "ar";
   const path = routePath(lang, key);
   const ogKey = key.replace(":", "-");
-  const ogCandidates = [`assets/og/${lang}/${ogKey}.jpg`, `assets/og/${lang}/home.jpg`, "assets/icons/icon-512.png"];
-  const ogFile = ogCandidates.find((f) => existsSync(`src/${f}`)) ?? ogCandidates[2];
+  // Share image: the page's own, else an article's cover, else the home image.
+  const cover = key.startsWith("article:") ? t.posts.find((a) => a.slug === key.slice(8))?.cover : "";
+  const ogCandidates = [`assets/og/${lang}/${ogKey}.jpg`, isSiteFile(cover) ? cover.slice(1) : null, `assets/og/${lang}/home.jpg`, "assets/icons/icon-512.png"].filter(Boolean);
+  const ogFile = ogCandidates.find((f) => existsSync(`src/${f}`)) ?? "assets/icons/icon-512.png";
+  const file = (p) => (absolute ? `/${p}` : relFile(path, p));
+  // Arabic-only articles have no English twin: the language switch goes to the English blog.
+  const hasAlt = !key.startsWith("article:") || content[otherLang].posts.some((a) => a.slug === key.slice(8));
+  const altKey = hasAlt ? key : "blog";
   return {
     t,
     lang,
-    config: cfg,
+    config,
     key,
     path,
-    altPath: routePath(otherLang, key),
+    hasAlt,
+    altPath: routePath(otherLang, altKey),
     arPath: routePath("ar", key),
     other: { lang: otherLang, t: content[otherLang] },
     routePath: (k) => routePath(lang, k),
     link: (k) => (absolute ? `/${routePath(lang, k)}` : relLink(path, routePath(lang, k))),
     otherLink: (k) => (absolute ? `/${routePath(otherLang, k)}` : relLink(path, routePath(otherLang, k))),
-    altLink: absolute ? `/${routePath(otherLang, key)}` : relLink(path, routePath(otherLang, key)),
+    altLink: absolute ? `/${routePath(otherLang, altKey)}` : relLink(path, routePath(otherLang, altKey)),
     asset: (p) => (absolute ? `/assets/${p}` : relFile(path, `assets/${p}`)),
-    file: (p) => (absolute ? `/${p}` : relFile(path, p)),
+    file,
+    // CMS image fields: full URLs pass through, "/assets/…" becomes relative.
+    media: (p) => (isSiteFile(p) ? file(p.slice(1)) : p || ""),
+    // Markdown HTML: make "/…" links and images relative too; on Arabic pages
+    // mark the Latin brand name as English (as txt() does for plain text).
+    fixUrls: (html) => {
+      const out = html.replace(/(\s(?:src|href))="\/(?!\/)([^"]*)"/g, (_, attr, p) => `${attr}="${file(p)}"`);
+      return lang === "ar" ? out.replace(/>[^<]+/g, (text) => text.replace(/Ampliq/g, '<span lang="en">Ampliq</span>')) : out;
+    },
     services: t.services,
-    articles: localizedPosts(lang),
+    articles: t.posts,
     ogFile,
     assetVersion,
   };
@@ -123,7 +96,7 @@ async function emit(lang, key, page, lastmod = BUILD_DATE) {
   if (h1s !== 1) throw new Error(`${ctx.path || "/"}: expected one <h1>, found ${h1s}`);
   await mkdir(`${OUT}/${ctx.path}`, { recursive: true });
   await writeFile(`${OUT}/${ctx.path}index.html`, html);
-  sitemap[lang].push({ path: ctx.path, alt: ctx.altPath, arPath: ctx.arPath, lastmod });
+  sitemap[lang].push({ path: ctx.path, alt: ctx.hasAlt ? ctx.altPath : null, lastmod });
 }
 
 let count = 0;
@@ -135,7 +108,7 @@ for (const lang of LANGS) {
   for (const s of t.services) await emit(lang, `service:${s.slug}`, (ctx) => pages.service(ctx, s));
   await emit(lang, "clients", pages.clients);
   await emit(lang, "blog", pages.blog, posts[0]?.date ?? BUILD_DATE);
-  for (const a of localizedPosts(lang)) await emit(lang, `article:${a.slug}`, (ctx) => pages.article(ctx, a), a.date);
+  for (const a of t.posts) await emit(lang, `article:${a.slug}`, (ctx) => pages.article(ctx, a), a.date);
   await emit(lang, "contact", pages.contact);
   await emit(lang, "privacy", (ctx) => pages.legal(ctx, "privacy"), t.pages.privacy.updated);
   await emit(lang, "terms", (ctx) => pages.legal(ctx, "terms"), t.pages.terms.updated);
@@ -145,11 +118,18 @@ for (const lang of LANGS) {
 // 404: served for unknown paths at any depth, so it uses root-absolute URLs.
 {
   const ctx = makeCtx("ar", "home", { absolute: true });
-  const html = renderDocument(ctx, pages.notFound(ctx, en))
+  const html = renderDocument(ctx, pages.notFound(ctx, content.en))
     .replace(/\n<link rel="(canonical|alternate)"[^>]*>|\n<meta property="og:url"[^>]*>/g, "")
     .replace('<meta name="description"', '<meta name="robots" content="noindex">\n<meta name="description"');
   await writeFile(`${OUT}/404.html`, html);
 }
+
+// ---------- dashboard (Decap CMS at /admin/) ----------
+await mkdir(`${OUT}/admin`, { recursive: true });
+await cp("src/admin/index.html", `${OUT}/admin/index.html`);
+await cp("src/admin/cms.js", `${OUT}/admin/cms.js`);
+// JSON is valid YAML; Decap reads config.yml next to the admin page.
+await writeFile(`${OUT}/admin/config.yml`, JSON.stringify(cmsConfig({ siteUrl }), null, 2) + "\n");
 
 // ---------- site files ----------
 await writeFile(
@@ -172,12 +152,16 @@ await writeFile(
   ) + "\n"
 );
 
-await writeFile(`${OUT}/robots.txt`, `User-agent: *\nAllow: /\n${siteUrl ? `\nSitemap: ${siteUrl}/sitemap.xml\n` : ""}`);
+await writeFile(`${OUT}/robots.txt`, `User-agent: *\nAllow: /\nDisallow: /admin/\n${siteUrl ? `\nSitemap: ${siteUrl}/sitemap.xml\n` : ""}`);
 if (siteUrl) {
   const xml = (entries) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${entries
   .map((e) => {
+    if (!e.alt) return `  <url>
+    <loc>${siteUrl}/${e.path}</loc>
+    <lastmod>${e.lastmod}</lastmod>
+  </url>`;
     const [arP, enP] = e.path.startsWith("en/") ? [e.alt, e.path] : [e.path, e.alt];
     return `  <url>
     <loc>${siteUrl}/${e.path}</loc>
@@ -203,8 +187,9 @@ ${entries
   );
 }
 
-console.log(`Built ${count} pages (${sitemap.ar.length} Arabic, ${sitemap.en.length} English) + 404 into ${OUT}/ — assets v${assetVersion}`);
+console.log(`Built ${count} pages (${sitemap.ar.length} Arabic, ${sitemap.en.length} English) + 404 + /admin/ into ${OUT}/ — assets v${assetVersion}`);
+for (const w of contentWarnings()) console.log(`Warning: ${w}`);
 const missing = Object.entries(config.contact).filter(([, v]) => !v).map(([k]) => k);
-if (missing.length) console.log(`Note: contact ${missing.join(", ")} not set in src/config.mjs — placeholders are shown.`);
-if (!config.form.endpoint) console.log("Note: form.endpoint not set — the form falls back to email" + (config.contact.email ? "." : " (also not set)."));
-if (!siteUrl) console.log("Note: siteUrl not set — canonical/hreflang tags and sitemaps are skipped.");
+if (missing.length) console.log(`Note: contact ${missing.join(", ")} not set (dashboard → Settings) — placeholders are shown.`);
+if (!config.form.endpoint) console.log("Note: form endpoint not set — the form falls back to email" + (config.contact.email ? "." : " (also not set)."));
+if (!siteUrl) console.log("Note: site URL not set — canonical/hreflang tags and sitemaps are skipped.");

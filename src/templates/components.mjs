@@ -154,7 +154,8 @@ export function models(ctx) {
 
 export function logoTile(ctx, c, { hidden = false } = {}) {
   const alt = hidden ? "" : esc(c[ctx.lang]);
-  return `<li class="logo${c.bg ? " logo--filled" : ""}"${c.bg ? ` style="--logo-bg:${c.bg}"` : ""}><img src="${ctx.asset(`img/clients/${c.file}.webp`)}" alt="${alt}" loading="lazy" decoding="async"></li>`;
+  const bg = /^#[0-9a-fA-F]{3,8}$/.test(c.bg) ? c.bg : "";
+  return `<li class="logo${bg ? " logo--filled" : ""}"${bg ? ` style="--logo-bg:${bg}"` : ""}><img src="${esc(ctx.media(c.logo))}" alt="${alt}" loading="lazy" decoding="async"></li>`;
 }
 
 export function marquee(ctx, label) {
@@ -285,7 +286,7 @@ export function articleCard(ctx, a, { headingLevel = 3 } = {}) {
   return `
         <article class="post-card" data-category="${a.service}" data-search="${esc(`${a.title} ${a.excerpt}`.toLowerCase())}">
           <a class="post-link" href="${ctx.link(`article:${a.slug}`)}">
-            <div class="post-cover" aria-hidden="true">${waves("waves--cover")}<span class="post-cover-icon">${icon(a.icon)}</span></div>
+            <div class="post-cover${a.cover ? " post-cover--image" : ""}" aria-hidden="true">${a.cover ? `<img src="${esc(ctx.media(a.cover))}" alt="" loading="lazy" decoding="async">` : `${waves("waves--cover")}<span class="post-cover-icon">${icon(a.icon)}</span>`}</div>
             <div class="post-body">
               <p class="pill">${esc(a.category)}</p>
               <${h} class="post-title">${txt(a.title, ctx.lang)}</${h}>

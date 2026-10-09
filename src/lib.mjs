@@ -44,15 +44,3 @@ export const relFile = (from, file) => posix.relative(dirOf(from), file);
 export const formatDate = (iso, locale) =>
   new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${iso}T00:00:00Z`));
 
-// Reading time from the article blocks (about 200 words a minute).
-export const readMinutes = (blocks) => {
-  const words = blocks
-    .flatMap((b) => (b.items ? b.items : [b.text]))
-    .join(" ")
-    .split(/\s+/)
-    .filter(Boolean).length;
-  return Math.max(1, Math.round(words / 200));
-};
-
-// Anchor ids for article headings (used by the table of contents).
-export const sectionId = (i) => `section-${i + 1}`;

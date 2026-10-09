@@ -1,6 +1,6 @@
 // One renderer per page template. Each returns { meta, body, navKey, jsonld }.
 
-import { esc, txt, latin, icon, brandIcon, formatDate, sectionId } from "../lib.mjs";
+import { esc, txt, latin, icon, brandIcon, formatDate } from "../lib.mjs";
 import {
   waves, sectionHead, pageHero, iconCard, stats, numbersBand, approach, cardGrid, models, logoTile, marquee,
   faq, ctaBand, contactInfo, nextSteps, contactForm, articleCard, resultsPanel, serviceRows, serviceCards,
@@ -184,7 +184,7 @@ export function about(ctx) {
           .map(
             (x) => `
         <article class="leader">
-          <div class="leader-photo"><img src="${ctx.asset(`img/team/${x.photo}.webp`)}" alt="${esc(x.name)}" width="720" height="1032" loading="lazy" decoding="async"></div>
+          <div class="leader-photo"><img src="${esc(ctx.media(x.photo))}" alt="${esc(x.name)}" width="720" height="1032" loading="lazy" decoding="async"></div>
           <div class="leader-body">
             <h3 class="leader-name">${esc(x.name)}</h3>
             <p class="leader-role">${esc(x.role)}</p>
@@ -320,21 +320,11 @@ export function blog(ctx) {
   return { meta: p.meta, body, navKey: "blog", jsonld: [{ "@context": "https://schema.org", "@type": "Blog", name: p.meta.title, description: p.meta.description, publisher: org(ctx) }, ...breadcrumbLd(ctx, crumbs)] };
 }
 
-function blocks(ctx, list) {
-  let h = 0;
-  return list
-    .map((b) => {
-      if (b.type === "h2") return `<h2 id="${sectionId(h++)}">${txt(b.text, ctx.lang)}</h2>`;
-      if (b.type === "ul" || b.type === "ol") return `<${b.type}>${b.items.map((i) => `<li>${txt(i, ctx.lang)}</li>`).join("")}</${b.type}>`;
-      return `<p>${txt(b.text, ctx.lang)}</p>`;
-    })
-    .join("\n          ");
-}
 
 export function article(ctx, a) {
   const { t, lang } = ctx;
   const crumbs = [{ label: t.nav[3].label, key: "blog" }, { label: a.title, key: `article:${a.slug}` }];
-  const heads = a.blocks.filter((b) => b.type === "h2");
+  const heads = a.headings;
   const others = ctx.articles.filter((x) => x.slug !== a.slug).slice(0, 3);
   const shareUrl = ctx.config.siteUrl ? `${ctx.config.siteUrl}/${ctx.path}` : "";
   const share = (name, base) => `<a class="share-btn" href="${shareUrl ? base(encodeURIComponent(shareUrl)) : "#"}" data-share="${name}" rel="noopener" target="_blank" aria-label="${esc(name === "x" ? "X" : name === "linkedin" ? "LinkedIn" : "WhatsApp")}">${brandIcon(name)}</a>`;
@@ -345,14 +335,14 @@ export function article(ctx, a) {
     extra: `<p class="post-meta post-meta--hero"><span class="pill pill--dark">${esc(a.category)}</span>${icon("calendar")}<time datetime="${a.date}">${esc(formatDate(a.date, t.dateLocale))}</time><span aria-hidden="true">·</span>${icon("clock")}<span>${esc(t.ui.readTime(a.minutes))}</span><span aria-hidden="true">·</span><span>${txt(t.ui.by, lang)}</span></p>`,
   })}
   <section class="section">
-    <div class="container article-grid">
-      <aside class="toc" aria-labelledby="toc-title">
+    <div class="container article-grid${heads.length ? "" : " article-grid--solo"}">
+      ${heads.length ? `<aside class="toc" aria-labelledby="toc-title">
         <p class="toc-title" id="toc-title">${esc(t.ui.toc)}</p>
-        <ol>${heads.map((hd, i) => `<li><a href="#${sectionId(i)}">${txt(hd.text, lang)}</a></li>`).join("")}</ol>
-      </aside>
+        <ol>${heads.map((hd, i) => `<li><a href="#section-${i + 1}">${hd.replace(/<[^>]+>/g, "")}</a></li>`).join("")}</ol>
+      </aside>` : ""}
       <article class="prose">
           <p class="lede">${txt(a.excerpt, lang)}</p>
-          ${blocks(ctx, a.blocks)}
+          ${ctx.fixUrls(a.html)}
         <div class="share" data-share-bar>
           <p>${esc(t.ui.share)}</p>
           ${share("x", (u) => `https://x.com/intent/post?url=${u}`)}
@@ -421,7 +411,7 @@ export function legal(ctx, key) {
     extra: `<p class="post-meta post-meta--hero">${icon("clock")}<span>${esc(t.ui.updated)}: <time datetime="${p.updated}">${esc(formatDate(p.updated, t.dateLocale))}</time></span></p>`,
   })}
   <section class="section">
-    <div class="container"><article class="prose prose--narrow">${blocks(ctx, p.blocks)}</article></div>
+    <div class="container"><article class="prose prose--narrow">${ctx.fixUrls(p.html)}</article></div>
   </section>`;
   return { meta: p.meta, body, navKey: null, jsonld: breadcrumbLd(ctx, crumbs) };
 }

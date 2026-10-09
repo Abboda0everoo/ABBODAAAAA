@@ -1,0 +1,106 @@
+{
+  "clients": [
+    {
+      "name_ar": "الهيئة السعودية للبيانات والذكاء الاصطناعي (سدايا)",
+      "name_en": "Saudi Data & AI Authority (SDAIA)",
+      "logo": "/assets/img/clients/sdaia.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "وزارة الموارد البشرية والتنمية الاجتماعية",
+      "name_en": "Ministry of Human Resources and Social Development",
+      "logo": "/assets/img/clients/hrsd.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "معهد الإدارة العامة",
+      "name_en": "Institute of Public Administration (IPA)",
+      "logo": "/assets/img/clients/ipa.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "قناة العربية",
+      "name_en": "Al Arabiya News Channel",
+      "logo": "/assets/img/clients/arabiya.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "جامعة الملك خالد",
+      "name_en": "King Khalid University",
+      "logo": "/assets/img/clients/kku.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "جامعة جدة",
+      "name_en": "University of Jeddah",
+      "logo": "/assets/img/clients/uj.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "كليات عنيزة",
+      "name_en": "Onaizah Colleges",
+      "logo": "/assets/img/clients/onaizah.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "أكاديمية تطوير القيادات الإدارية (عدل)",
+      "name_en": "Academy for Developing Administrative Leaders (ADAL)",
+      "logo": "/assets/img/clients/adal.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "مركز الأعمال – معهد الإدارة العامة",
+      "name_en": "Business Center – IPA",
+      "logo": "/assets/img/clients/bc.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "إثرائي – معهد الإدارة العامة",
+      "name_en": "Ethrai – IPA",
+      "logo": "/assets/img/clients/ethrai.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "كي تايم",
+      "name_en": "KEYTIME",
+      "logo": "/assets/img/clients/keytime.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "مجمع توليب الطبي",
+      "name_en": "Tulip Medical Complex",
+      "logo": "/assets/img/clients/tulip.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "التاروتي",
+      "name_en": "Altarouti",
+      "logo": "/assets/img/clients/altarouti.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "فلو",
+      "name_en": "FLOW",
+      "logo": "/assets/img/clients/flow.webp",
+      "bg": ""
+    },
+    {
+      "name_ar": "مسك",
+      "name_en": "Msk",
+      "logo": "/assets/img/clients/msk.webp",
+      "bg": "#261F53"
+    },
+    {
+      "name_ar": "التسوق الذكي",
+      "name_en": "Smart Shopping",
+      "logo": "/assets/img/clients/smart.webp",
+      "bg": "#00B3B0"
+    },
+    {
+      "name_ar": "شعار عميل",
+      "name_en": "Client logo",
+      "logo": "/assets/img/clients/green.webp",
+      "bg": "#142B23"
+    }
+  ]
+}

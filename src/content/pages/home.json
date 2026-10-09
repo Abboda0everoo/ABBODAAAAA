@@ -1,0 +1,84 @@
+{
+  "ar": {
+    "meta": {
+      "title": "Ampliq | نُضخّم أثر أعمالك بذكاء",
+      "description": "Ampliq شريك نمو في الرياض: التسويق الرقمي، وإدارة الموارد البشرية، والبرمجة وإنشاء المواقع. نحوّل الخبرة والبيانات إلى نتائج قابلة للقياس."
+    },
+    "hero": {
+      "overline": "AMPLIFY YOUR BUSINESS IMPACT",
+      "title": "نُضخّم أثر أعمالك بذكاء",
+      "rotatorPrefix": "شريك نمو في",
+      "rotator": [
+        "التسويق الرقمي",
+        "إدارة الموارد البشرية",
+        "البرمجة وإنشاء المواقع"
+      ],
+      "lead": "نحوّل الخبرة والبيانات إلى نتائج قابلة للقياس، ونعمل كامتداد لفريقك من الاستراتيجية حتى التنفيذ."
+    },
+    "clients": {
+      "label": "جهات وثقت بخبراتنا"
+    },
+    "services": {
+      "overline": "OUR SERVICES",
+      "title": "ثلاثة مسارات تحت سقف واحد",
+      "lead": "يمكن التعاقد عليها منفردة أو كحزمة واحدة.",
+      "all": "كل الخدمات"
+    },
+    "about": {
+      "overline": "ABOUT AMPLIQ",
+      "title": "شريك نمو يجمع التسويق والموارد البشرية والتقنية تحت سقف واحد",
+      "text": "نعمل كامتداد لفرق عملائنا من الجهات الحكومية والتعليمية والشركات الخاصة؛ نبدأ بفهم الوضع الحالي، ثم نبني الاستراتيجية، ونتولى تنفيذها وقياس أثرها، لنحوّل الأهداف إلى نتائج ملموسة.",
+      "link": "تعرّف علينا"
+    },
+    "blog": {
+      "overline": "INSIGHTS",
+      "title": "من المدونة"
+    },
+    "start": {
+      "overline": "LET'S TALK",
+      "title": "لنصنع أثراً أكبر معاً",
+      "lead": "أخبرنا عن هدفك، وسنقترح عليك المسار ونموذج التعاقد الأنسب لمنشأتك."
+    }
+  },
+  "en": {
+    "meta": {
+      "title": "Ampliq | Amplify Your Business Impact",
+      "description": "Ampliq is a Riyadh-based growth partner for digital marketing, human resources management, and web & software development — turning expertise and data into measurable results."
+    },
+    "hero": {
+      "overline": "AMPLIFY YOUR BUSINESS IMPACT",
+      "title": "We amplify your business impact, intelligently",
+      "rotatorPrefix": "Your growth partner in",
+      "rotator": [
+        "digital marketing",
+        "human resources",
+        "web development"
+      ],
+      "lead": "We turn expertise and data into measurable results, and work as an extension of your team from strategy to execution."
+    },
+    "clients": {
+      "label": "Organizations that trusted our expertise"
+    },
+    "services": {
+      "overline": "OUR SERVICES",
+      "title": "Three tracks under one roof",
+      "lead": "Engage them individually or as a single package.",
+      "all": "All services"
+    },
+    "about": {
+      "overline": "ABOUT AMPLIQ",
+      "title": "A growth partner bringing marketing, HR and technology together under one roof",
+      "text": "We work as an extension of our clients’ teams across government entities, educational institutions and private companies. We start by understanding where you are today, then build the strategy, deliver it and measure its impact — turning goals into tangible results.",
+      "link": "Get to know us"
+    },
+    "blog": {
+      "overline": "INSIGHTS",
+      "title": "From the blog"
+    },
+    "start": {
+      "overline": "LET'S TALK",
+      "title": "Let’s create a bigger impact together",
+      "lead": "Tell us about your goal, and we’ll suggest the right track and engagement model for your organization."
+    }
+  }
+}

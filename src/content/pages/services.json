@@ -1,0 +1,24 @@
+{
+  "ar": {
+    "meta": {
+      "title": "خدماتنا | Ampliq",
+      "description": "التسويق الرقمي، وإدارة الموارد البشرية، والبرمجة وإنشاء المواقع: ثلاثة مسارات متكاملة يمكن التعاقد عليها منفردة أو كحزمة واحدة، بنماذج تعاقد مرنة."
+    },
+    "hero": {
+      "overline": "OUR SERVICES",
+      "title": "خدماتنا",
+      "lead": "ثلاثة مسارات متكاملة يمكن التعاقد عليها منفردة أو كحزمة واحدة."
+    }
+  },
+  "en": {
+    "meta": {
+      "title": "Services | Ampliq",
+      "description": "Digital marketing, human resources management, and web & software development: three integrated tracks you can engage individually or as a package, with flexible engagement models."
+    },
+    "hero": {
+      "overline": "OUR SERVICES",
+      "title": "Our services",
+      "lead": "Three integrated tracks you can engage individually or as a single package."
+    }
+  }
+}

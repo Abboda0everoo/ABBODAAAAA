@@ -123,9 +123,9 @@ export function renderDocument(ctx, page) {
   const seo = config.siteUrl
     ? `
 <link rel="canonical" href="${abs(ctx.path)}">
-<link rel="alternate" hreflang="${lang}" href="${abs(ctx.path)}">
+${ctx.hasAlt ? `<link rel="alternate" hreflang="${lang}" href="${abs(ctx.path)}">
 <link rel="alternate" hreflang="${ctx.other.lang}" href="${abs(ctx.altPath)}">
-<link rel="alternate" hreflang="x-default" href="${abs(ctx.arPath)}">
+<link rel="alternate" hreflang="x-default" href="${abs(ctx.arPath)}">` : ""}
 <meta property="og:url" content="${abs(ctx.path)}">`
     : "";
   const siteConfig = {
