@@ -1,10 +1,10 @@
 {
-  "name": "AMPLIQ | أمبليك",
-  "short_name": "AMPLIQ",
+  "name": "Ampliq",
+  "short_name": "Ampliq",
   "start_url": "./",
   "display": "browser",
-  "background_color": "#0B1D33",
-  "theme_color": "#0B1D33",
+  "background_color": "#0B1A2E",
+  "theme_color": "#07111F",
   "icons": [
     {
       "src": "assets/icons/icon-192.png",
