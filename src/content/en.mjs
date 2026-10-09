@@ -437,6 +437,24 @@ export default {
         ],
       },
       numbers: { overline: "AMPLIQ IN NUMBERS", title: "Experience measured by results" },
+      leadership: {
+        overline: "LEADERSHIP",
+        title: "Leadership",
+        people: [
+          {
+            photo: "nayef",
+            name: "Nayef bin Samir bin Abboud Al Madhash",
+            role: "Chairman of the Board",
+            bio: "Leads the group’s direction with a strategic vision that anticipates opportunities and opens new horizons for growth.",
+          },
+          {
+            photo: "abdulrahman",
+            name: "Abdulrahman Mohammed",
+            role: "General Manager – Marketing & Business Management",
+            bio: "More than 13 years of experience in marketing, project management and digital transformation across 4 Arab markets, having managed more than 150 brands.",
+          },
+        ],
+      },
     },
 
     services: {

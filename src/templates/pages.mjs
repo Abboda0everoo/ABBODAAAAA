@@ -175,8 +175,30 @@ export function about(ctx) {
   </section>
 
   ${numbersBand(ctx, p.numbers)}
+
+  <section class="section" id="leadership" aria-labelledby="leadership-title">
+    <div class="container">
+      ${sectionHead(ctx, { overline: p.leadership.overline, title: p.leadership.title, id: "leadership-title" })}
+      <div class="leaders">
+        ${p.leadership.people
+          .map(
+            (x) => `
+        <article class="leader">
+          <div class="leader-photo"><img src="${ctx.asset(`img/team/${x.photo}.webp`)}" alt="${esc(x.name)}" width="720" height="1032" loading="lazy" decoding="async"></div>
+          <div class="leader-body">
+            <h3 class="leader-name">${esc(x.name)}</h3>
+            <p class="leader-role">${esc(x.role)}</p>
+            <p class="leader-bio">${txt(x.bio, lang)}</p>
+          </div>
+        </article>`
+          )
+          .join("")}
+      </div>
+    </div>
+  </section>
   ${ctaBand(ctx)}`;
-  return { meta: p.meta, body, navKey: "about", jsonld: [{ "@context": "https://schema.org", "@type": "AboutPage", name: p.meta.title, description: p.meta.description, about: org(ctx) }, ...breadcrumbLd(ctx, crumbs)] };
+  const people = p.leadership.people.map((x) => ({ "@type": "Person", name: x.name, jobTitle: x.role }));
+  return { meta: p.meta, body, navKey: "about", jsonld: [{ "@context": "https://schema.org", "@type": "AboutPage", name: p.meta.title, description: p.meta.description, about: { ...org(ctx), employee: people } }, ...breadcrumbLd(ctx, crumbs)] };
 }
 
 export function services(ctx) {

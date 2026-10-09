@@ -320,6 +320,18 @@ html[lang="en"] .card-text { line-height: 1.6; }
 .name-part h3 { font-size: 24px; font-weight: 700; color: var(--navy-900); margin: 4px 0 6px; }
 .name-part p:last-child { color: var(--slate-600); font-size: 17px; }
 
+/* ---------- Leadership ---------- */
+.leaders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+.leader { display: flex; align-items: center; gap: 28px; padding: 20px; background: var(--white); border: 1px solid var(--silver-200); border-radius: var(--radius-card); box-shadow: var(--shadow-sm); }
+.leader-photo { width: 200px; flex: none; aspect-ratio: .7; border-radius: var(--radius-lg); overflow: hidden; background: var(--navy-950); }
+.leader-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.leader-body { padding-inline-end: 8px; }
+.leader-name { font-size: 22px; font-weight: 700; line-height: 1.45; color: var(--navy-900); }
+html[lang="en"] .leader-name { line-height: 1.3; }
+.leader-role { margin: 6px 0 14px; font-weight: 600; line-height: 1.5; color: var(--gold-text); }
+.leader-bio { font-size: 15px; line-height: 1.8; color: var(--slate-600); }
+html[lang="en"] .leader-bio { line-height: 1.6; }
+
 /* ---------- Page hero (inner pages) ---------- */
 .page-hero { position: relative; overflow: hidden; background: var(--navy-900); color: var(--white); padding-block: 48px 72px; }
 .page-hero-inner { position: relative; }
@@ -520,7 +532,7 @@ html[lang="en"] .prose h2 { line-height: 1.3; }
   .nav a:not(.btn) { font-size: 20px; min-height: 56px; padding: 0 4px; border-bottom: 1px solid var(--navy-700); border-radius: 0; }
   .nav-cta { display: flex; width: 100%; margin-top: 28px; }
   body.menu-open { overflow: hidden; }
-  .hero-grid, .split, .split--top, .contact-grid, .contact-grid--page, .results, .faq-wrap, .article-grid, .cta-inner { grid-template-columns: minmax(0, 1fr); }
+  .hero-grid, .split, .split--top, .contact-grid, .contact-grid--page, .results, .faq-wrap, .article-grid, .cta-inner, .leaders { grid-template-columns: minmax(0, 1fr); }
   .hero-visual { order: -1; }
   .hero-visual img { width: min(60%, 280px); }
   .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -567,6 +579,13 @@ html[lang="en"] .prose h2 { line-height: 1.3; }
   .prose { font-size: 17px; }
   .lede { font-size: 19px; }
   .brand-panel { padding: 32px; aspect-ratio: 16 / 10; }
+}
+
+@media (max-width: 560px) {
+  .leader { flex-direction: column; align-items: stretch; gap: 20px; }
+  .leader-photo { width: 100%; aspect-ratio: 1; }
+  .leader-photo img { object-position: center 15%; }
+  .leader-body { padding: 0 4px 4px; }
 }
 
 @media (max-width: 420px) {
