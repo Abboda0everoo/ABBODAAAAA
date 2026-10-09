@@ -1,0 +1,394 @@
+{
+  "ar": {
+    "stats": [
+      {
+        "value": "+150",
+        "label": "علامة تجارية",
+        "text": "أدرنا حضورها وتسويقها عبر قطاعات حكومية وتعليمية وخاصة."
+      },
+      {
+        "value": "+20",
+        "label": "عاماً من الخبرة",
+        "text": "خبرات إدارية وقيادية متراكمة لمجلس الإدارة."
+      },
+      {
+        "value": "4",
+        "label": "أسواق عربية",
+        "text": "السعودية، مصر، الإمارات، العراق."
+      }
+    ],
+    "sectorsLabel": "قطاعات خدمناها:",
+    "sectorTags": [
+      "حكومي",
+      "تعليمي",
+      "إعلامي",
+      "صحي",
+      "تجزئة",
+      "تقنية"
+    ],
+    "approach": {
+      "overline": "HOW WE WORK",
+      "title": "منهجية العمل",
+      "lead": "خمس مراحل واضحة تضمن أن كل خطوة مبنية على ما قبلها.",
+      "steps": [
+        {
+          "title": "نحلّل",
+          "text": "نفهم الهدف والوضع الحالي والجمهور، ونحدد الفجوة بين الواقع والمستهدف."
+        },
+        {
+          "title": "نصمّم",
+          "text": "نحدد النطاق والخطة والميزانية ومؤشرات الأداء، ونعتمدها مع العميل."
+        },
+        {
+          "title": "ننفّذ",
+          "text": "نشغّل الخدمة كامتداد لفريقك، بمسؤوليات وجداول زمنية واضحة."
+        },
+        {
+          "title": "نقيس",
+          "text": "نتابع المؤشرات ونرفع تقارير دورية تقرأ الأثر الفعلي."
+        },
+        {
+          "title": "نحسّن",
+          "text": "نطوّر الأداء باستمرار بناءً على النتائج والبيانات."
+        }
+      ]
+    },
+    "why": {
+      "overline": "WHY AMPLIQ",
+      "title": "لماذا نحن؟",
+      "items": [
+        {
+          "icon": "award",
+          "title": "خبرة مثبتة",
+          "text": "أكثر من 150 علامة تجارية عبر قطاعات حكومية وتعليمية وخاصة، في 4 أسواق عربية."
+        },
+        {
+          "icon": "play-circle",
+          "title": "من الخطة إلى التنفيذ",
+          "text": "لا نسلّم تقارير فقط؛ نشارك في التنفيذ ونتحمّل مسؤولية النتائج."
+        },
+        {
+          "icon": "database",
+          "title": "قرارات مبنية على البيانات",
+          "text": "كل نشاط مرتبط بمؤشرات أداء وتقارير واضحة تتابعها الإدارة."
+        },
+        {
+          "icon": "layers",
+          "title": "شريك واحد لملفات متعددة",
+          "text": "التسويق والموارد البشرية والبرمجة تحت إدارة واحدة ورؤية موحدة."
+        },
+        {
+          "icon": "map-pin",
+          "title": "فهم عميق للسوق السعودي",
+          "text": "معرفة بالأنظمة والثقافة المحلية وسلوك المستهلك في المملكة."
+        },
+        {
+          "icon": "refresh-cw",
+          "title": "مرونة في التعاقد",
+          "text": "نماذج عمل تناسب حجم المنشأة وميزانيتها، وتتوسع مع نموها."
+        }
+      ]
+    },
+    "challenges": {
+      "overline": "CHALLENGES WE SOLVE",
+      "title": "التحديات التي نحلّها",
+      "lead": "نبدأ من المشكلة الفعلية لدى العميل، لا من قائمة خدمات جاهزة.",
+      "items": [
+        {
+          "icon": "bar-chart-2",
+          "title": "تسويق بلا أثر واضح",
+          "text": "إنفاق إعلاني وحملات لا ترتبط بمؤشرات أداء ولا بنتائج مبيعات."
+        },
+        {
+          "icon": "monitor",
+          "title": "حضور رقمي لا يمثّلك",
+          "text": "موقع قديم أو بطيء أو غير موجود، لا يعكس قيمة المنشأة ولا يحوّل الزوار إلى عملاء."
+        },
+        {
+          "icon": "shuffle",
+          "title": "تشتت الموردين",
+          "text": "جهات متعددة للتسويق والتوظيف والبرمجة دون رؤية موحدة."
+        },
+        {
+          "icon": "users",
+          "title": "صعوبة الوصول للكفاءات",
+          "text": "توظيف بطيء ومكلف، وفرق لا تتوافق مهاراتها مع احتياج المرحلة."
+        },
+        {
+          "icon": "alert-triangle",
+          "title": "غياب التنظيم",
+          "text": "الاعتماد على الاجتهاد بدل هياكل وسياسات وإجراءات واضحة."
+        },
+        {
+          "icon": "activity",
+          "title": "نمو يسبق الجاهزية",
+          "text": "التوسع يضغط على الفريق والعمليات قبل أن تكون جاهزة."
+        }
+      ]
+    },
+    "models": {
+      "overline": "ENGAGEMENT MODELS",
+      "title": "نماذج التعاقد",
+      "lead": "نماذج مرنة تناسب حجم المنشأة ومرحلتها وميزانيتها.",
+      "items": [
+        {
+          "icon": "refresh-cw",
+          "title": "اشتراك شهري",
+          "text": "فريق متكامل يعمل كامتداد لفريقك، بنطاق ومخرجات شهرية ثابتة.",
+          "fit": "المنشآت التي تحتاج تسويقاً وتشغيلاً مستمراً."
+        },
+        {
+          "icon": "grid",
+          "title": "مشروع محدد",
+          "text": "نطاق وجدول زمني ومخرجات واضحة تُسلَّم بالكامل.",
+          "fit": "إنشاء المواقع، والهيكلة، وإعداد اللوائح."
+        },
+        {
+          "icon": "trending-up",
+          "title": "حملة تسويقية",
+          "text": "تخطيط وتنفيذ حملة بهدف محدد وميزانية معلومة.",
+          "fit": "المواسم، والإطلاقات، والعروض الخاصة."
+        },
+        {
+          "icon": "tool",
+          "title": "دعم وصيانة",
+          "text": "عقد دعم فني وتحديثات دورية لموقعك أو منصتك بعد الإطلاق.",
+          "fit": "المواقع والمتاجر والأنظمة القائمة."
+        }
+      ]
+    },
+    "sectors": {
+      "overline": "SECTORS WE SERVE",
+      "title": "القطاعات التي نخدمها",
+      "lead": "خبرة تراكمت عبر قطاعات مختلفة، لكل منها احتياجاته وجمهوره وأنظمته.",
+      "items": [
+        {
+          "icon": "briefcase",
+          "title": "الجهات الحكومية",
+          "text": "حملات توعوية، وإدارة الحضور الرقمي، ودعم إطلاق المبادرات والبرامج."
+        },
+        {
+          "icon": "book-open",
+          "title": "التعليم والتدريب",
+          "text": "تسويق البرامج الأكاديمية والتدريبية، واستقطاب الطلاب والمتدربين."
+        },
+        {
+          "icon": "monitor",
+          "title": "الإعلام والمحتوى",
+          "text": "استراتيجيات المحتوى، وإدارة المنصات، وتنمية الجمهور والتفاعل."
+        },
+        {
+          "icon": "heart",
+          "title": "القطاع الصحي",
+          "text": "بناء الثقة، وحملات الخدمات الطبية، وإدارة السمعة الرقمية."
+        },
+        {
+          "icon": "shopping-bag",
+          "title": "التجزئة والتجارة الإلكترونية",
+          "text": "حملات الأداء والمواسم والعروض، ورفع المبيعات والتحويلات."
+        },
+        {
+          "icon": "cpu",
+          "title": "التقنية والشركات الناشئة",
+          "text": "إطلاق المنتجات، والتموضع في السوق، وبناء فرق النمو."
+        }
+      ]
+    }
+  },
+  "en": {
+    "stats": [
+      {
+        "value": "+150",
+        "label": "Brands",
+        "text": "Whose presence and marketing we’ve managed across government, education and private sectors."
+      },
+      {
+        "value": "+20",
+        "label": "Years of experience",
+        "text": "The board’s accumulated management and leadership experience."
+      },
+      {
+        "value": "4",
+        "label": "Arab markets",
+        "text": "Saudi Arabia, Egypt, the UAE and Iraq."
+      }
+    ],
+    "sectorsLabel": "Sectors we’ve served:",
+    "sectorTags": [
+      "Government",
+      "Education",
+      "Media",
+      "Healthcare",
+      "Retail",
+      "Technology"
+    ],
+    "approach": {
+      "overline": "HOW WE WORK",
+      "title": "How we work",
+      "lead": "Five clear stages that make sure every step builds on the one before it.",
+      "steps": [
+        {
+          "title": "Analyze",
+          "text": "We understand your goal, current situation and audience, and pinpoint the gap between where you are and where you want to be."
+        },
+        {
+          "title": "Design",
+          "text": "We define the scope, plan, budget and KPIs, and agree on them with you."
+        },
+        {
+          "title": "Execute",
+          "text": "We run the service as an extension of your team, with clear responsibilities and timelines."
+        },
+        {
+          "title": "Measure",
+          "text": "We track KPIs and deliver regular reports that show the real impact."
+        },
+        {
+          "title": "Optimize",
+          "text": "We continuously improve performance based on results and data."
+        }
+      ]
+    },
+    "why": {
+      "overline": "WHY AMPLIQ",
+      "title": "Why us?",
+      "items": [
+        {
+          "icon": "award",
+          "title": "Proven expertise",
+          "text": "More than 150 brands across government, education and private sectors, in 4 Arab markets."
+        },
+        {
+          "icon": "play-circle",
+          "title": "From plan to execution",
+          "text": "We don’t just hand over reports — we take part in execution and own the results."
+        },
+        {
+          "icon": "database",
+          "title": "Data-driven decisions",
+          "text": "Every activity is tied to KPIs and clear reports that leadership can follow."
+        },
+        {
+          "icon": "layers",
+          "title": "One partner, many functions",
+          "text": "Marketing, HR and development under one management and one unified vision."
+        },
+        {
+          "icon": "map-pin",
+          "title": "Deep knowledge of the Saudi market",
+          "text": "Familiarity with local regulations, culture and consumer behavior in the Kingdom."
+        },
+        {
+          "icon": "refresh-cw",
+          "title": "Flexible engagement",
+          "text": "Working models that fit your size and budget, and scale as you grow."
+        }
+      ]
+    },
+    "challenges": {
+      "overline": "CHALLENGES WE SOLVE",
+      "title": "Challenges we solve",
+      "lead": "We start from the client’s real problem — not from an off-the-shelf list of services.",
+      "items": [
+        {
+          "icon": "bar-chart-2",
+          "title": "Marketing without clear impact",
+          "text": "Ad spend and campaigns that aren’t tied to KPIs or to sales results."
+        },
+        {
+          "icon": "monitor",
+          "title": "A digital presence that doesn’t represent you",
+          "text": "An outdated, slow or missing website that doesn’t reflect your value or turn visitors into customers."
+        },
+        {
+          "icon": "shuffle",
+          "title": "Fragmented vendors",
+          "text": "Separate providers for marketing, hiring and development, with no unified vision."
+        },
+        {
+          "icon": "users",
+          "title": "Hard-to-reach talent",
+          "text": "Slow, costly hiring, and teams whose skills don’t match what the stage requires."
+        },
+        {
+          "icon": "alert-triangle",
+          "title": "Lack of structure",
+          "text": "Relying on improvisation instead of clear structures, policies and procedures."
+        },
+        {
+          "icon": "activity",
+          "title": "Growth that outpaces readiness",
+          "text": "Expansion strains the team and operations before they’re ready."
+        }
+      ]
+    },
+    "models": {
+      "overline": "ENGAGEMENT MODELS",
+      "title": "Engagement models",
+      "lead": "Flexible models that fit your organization’s size, stage and budget.",
+      "items": [
+        {
+          "icon": "refresh-cw",
+          "title": "Monthly retainer",
+          "text": "A complete team working as an extension of yours, with a fixed monthly scope and deliverables.",
+          "fit": "Organizations that need ongoing marketing and operations."
+        },
+        {
+          "icon": "grid",
+          "title": "Defined project",
+          "text": "A clear scope, timeline and deliverables, handed over in full.",
+          "fit": "Building websites, restructuring and drafting regulations."
+        },
+        {
+          "icon": "trending-up",
+          "title": "Marketing campaign",
+          "text": "Planning and running a campaign with a specific goal and a known budget.",
+          "fit": "Seasons, launches and special offers."
+        },
+        {
+          "icon": "tool",
+          "title": "Support & maintenance",
+          "text": "A technical support contract with regular updates for your website or platform after launch.",
+          "fit": "Existing websites, stores and systems."
+        }
+      ]
+    },
+    "sectors": {
+      "overline": "SECTORS WE SERVE",
+      "title": "Sectors we serve",
+      "lead": "Experience built across diverse sectors — each with its own needs, audiences and regulations.",
+      "items": [
+        {
+          "icon": "briefcase",
+          "title": "Government entities",
+          "text": "Awareness campaigns, digital presence management, and support for launching initiatives and programs."
+        },
+        {
+          "icon": "book-open",
+          "title": "Education & training",
+          "text": "Marketing academic and training programs, and attracting students and trainees."
+        },
+        {
+          "icon": "monitor",
+          "title": "Media & content",
+          "text": "Content strategy, platform management, and growing audiences and engagement."
+        },
+        {
+          "icon": "heart",
+          "title": "Healthcare",
+          "text": "Building trust, medical services campaigns, and online reputation management."
+        },
+        {
+          "icon": "shopping-bag",
+          "title": "Retail & e-commerce",
+          "text": "Performance, seasonal and promotional campaigns that lift sales and conversions."
+        },
+        {
+          "icon": "cpu",
+          "title": "Technology & startups",
+          "text": "Product launches, market positioning, and building growth teams."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "ar": {
+    "meta": {
+      "title": "من نحن | Ampliq",
+      "description": "Ampliq مجموعة سعودية مقرها الرياض، تجمع التسويق الرقمي وإدارة الموارد البشرية والبرمجة وإنشاء المواقع تحت سقف واحد. تعرّف على رؤيتنا ورسالتنا وقيمنا."
+    },
+    "hero": {
+      "overline": "ABOUT AMPLIQ",
+      "title": "من نحن",
+      "lead": "شريك نمو يجمع التسويق والموارد البشرية والتقنية تحت سقف واحد."
+    },
+    "story": {
+      "title": "نحوّل الأهداف إلى نتائج ملموسة",
+      "paragraphs": [
+        "Ampliq مجموعة سعودية مقرها الرياض، متخصصة في التسويق الرقمي وإدارة الموارد البشرية والبرمجة وإنشاء المواقع.",
+        "نعمل كامتداد لفرق عملائنا من الجهات الحكومية والتعليمية والشركات الخاصة؛ نبدأ بفهم الوضع الحالي، ثم نبني الاستراتيجية، ونتولى تنفيذها وقياس أثرها، لنحوّل الأهداف إلى نتائج ملموسة.",
+        "نؤمن بأن المنشأة لا تحتاج بالضرورة إلى بناء كل الوظائف داخلياً منذ البداية؛ لذلك نوفر لها فريقاً متكاملاً من الخبرات، بتكلفة مرنة ونتائج قابلة للقياس."
+      ],
+      "pillars": [
+        {
+          "icon": "trending-up",
+          "title": "التسويق الرقمي",
+          "text": "نصنع الطلب ونقود النمو"
+        },
+        {
+          "icon": "users",
+          "title": "إدارة الموارد البشرية",
+          "text": "نبني الفرق وننظّم بيئة العمل"
+        },
+        {
+          "icon": "code",
+          "title": "البرمجة وإنشاء المواقع",
+          "text": "نبني حضورك الرقمي"
+        }
+      ]
+    },
+    "vision": {
+      "overline": "VISION & MISSION",
+      "title": "رؤيتنا ورسالتنا",
+      "visionTitle": "رؤيتنا",
+      "vision": "أن نكون شريك النمو الأذكى للمنشآت في المملكة العربية السعودية، عبر حلول تسويقية وإدارية وتقنية تصنع أثراً قابلاً للقياس، وتواكب مستهدفات رؤية 2030 في تمكين القطاع الخاص ورفع كفاءة الجهات.",
+      "missionTitle": "رسالتنا",
+      "mission": "نقدّم خدمات متكاملة في التسويق والموارد البشرية والبرمجة وإنشاء المواقع، تجمع الخبرة العملية والبيانات والتقنية، لنرفع كفاءة عملائنا ونسرّع نموهم، ونخفف عنهم عبء بناء كل الوظائف داخلياً."
+    },
+    "name": {
+      "overline": "THE NAME",
+      "title": "معنى الاسم",
+      "parts": [
+        {
+          "term": "AMPLIFY",
+          "label": "التضخيم",
+          "text": "نوسّع الوصول ونرفع الأثر."
+        },
+        {
+          "term": "IQ",
+          "label": "الذكاء",
+          "text": "قرارات مبنية على البيانات."
+        }
+      ]
+    },
+    "values": {
+      "overline": "OUR VALUES",
+      "title": "قيمنا",
+      "lead": "مبادئ تحكم طريقة عملنا مع كل عميل.",
+      "items": [
+        {
+          "icon": "target",
+          "en": "IMPACT",
+          "title": "الأثر",
+          "text": "نجاحنا يُقاس بما يتحقق لعملائنا، لا بحجم ما نسلّمه."
+        },
+        {
+          "icon": "zap",
+          "en": "INNOVATION",
+          "title": "الابتكار",
+          "text": "حلول رقمية وأدوات حديثة قابلة للتطوير مع نمو العميل."
+        },
+        {
+          "icon": "check-circle",
+          "en": "COMMITMENT",
+          "title": "الالتزام",
+          "text": "متابعة مستمرة، واحترام للمواعيد، وتحمّل لمسؤولية النتائج."
+        },
+        {
+          "icon": "eye",
+          "en": "TRANSPARENCY",
+          "title": "الشفافية",
+          "text": "نطاق عمل وتكلفة ومؤشرات أداء مفهومة منذ اليوم الأول."
+        },
+        {
+          "icon": "award",
+          "en": "PROFESSIONALISM",
+          "title": "الاحترافية",
+          "text": "تنفيذ منظم ومعايير جودة واضحة تليق بثقة عملائنا."
+        }
+      ]
+    },
+    "numbers": {
+      "overline": "AMPLIQ IN NUMBERS",
+      "title": "خبرة تُقاس بالنتائج"
+    },
+    "leadership": {
+      "overline": "LEADERSHIP",
+      "title": "القيادة",
+      "people": [
+        {
+          "photo": "/assets/img/team/nayef.webp",
+          "name": "نايف بن سمير بن عبود آل مدهش",
+          "role": "رئيس مجلس الإدارة",
+          "bio": "يقود توجه المجموعة برؤية استراتيجية تستشرف الفرص وتصنع آفاقاً جديدة للنمو."
+        },
+        {
+          "photo": "/assets/img/team/abdulrahman.webp",
+          "name": "عبدالرحمن محمد",
+          "role": "المدير العام – التسويق وإدارة الأعمال",
+          "bio": "خبرة تتجاوز 13 عاماً في التسويق وإدارة المشاريع والتحول الرقمي عبر 4 أسواق عربية، وإدارة أكثر من 150 علامة تجارية."
+        }
+      ]
+    }
+  },
+  "en": {
+    "meta": {
+      "title": "About | Ampliq",
+      "description": "Ampliq is a Riyadh-based Saudi group bringing digital marketing, HR management, and web & software development under one roof. Our vision, mission and values."
+    },
+    "hero": {
+      "overline": "ABOUT AMPLIQ",
+      "title": "About us",
+      "lead": "A growth partner bringing marketing, HR and technology together under one roof."
+    },
+    "story": {
+      "title": "We turn goals into tangible results",
+      "paragraphs": [
+        "Ampliq is a Saudi group headquartered in Riyadh, specializing in digital marketing, human resources management, and web & software development.",
+        "We work as an extension of our clients’ teams across government entities, educational institutions and private companies. We start by understanding where you are today, then build the strategy, deliver it and measure its impact — turning goals into tangible results.",
+        "We believe an organization doesn’t have to build every function in-house from day one. That’s why we provide a complete team of experts — at a flexible cost, with measurable results."
+      ],
+      "pillars": [
+        {
+          "icon": "trending-up",
+          "title": "Digital marketing",
+          "text": "We create demand and drive growth"
+        },
+        {
+          "icon": "users",
+          "title": "Human resources",
+          "text": "We build teams and organize the workplace"
+        },
+        {
+          "icon": "code",
+          "title": "Web & software development",
+          "text": "We build your digital presence"
+        }
+      ]
+    },
+    "vision": {
+      "overline": "VISION & MISSION",
+      "title": "Our vision & mission",
+      "visionTitle": "Our vision",
+      "vision": "To be the smartest growth partner for organizations in Saudi Arabia, through marketing, management and technology solutions that create measurable impact and support Vision 2030’s goals of empowering the private sector and raising institutional efficiency.",
+      "missionTitle": "Our mission",
+      "mission": "We deliver integrated marketing, human resources, and web & software development services that combine hands-on expertise, data and technology — raising our clients’ efficiency, accelerating their growth, and relieving them of the burden of building every function in-house."
+    },
+    "name": {
+      "overline": "THE NAME",
+      "title": "The meaning of our name",
+      "parts": [
+        {
+          "term": "AMPLIFY",
+          "label": "Amplification",
+          "text": "We extend reach and raise impact."
+        },
+        {
+          "term": "IQ",
+          "label": "Intelligence",
+          "text": "Decisions grounded in data."
+        }
+      ]
+    },
+    "values": {
+      "overline": "OUR VALUES",
+      "title": "Our values",
+      "lead": "The principles that govern how we work with every client.",
+      "items": [
+        {
+          "icon": "target",
+          "en": "IMPACT",
+          "title": "Impact",
+          "text": "Our success is measured by what our clients achieve, not by how much we deliver."
+        },
+        {
+          "icon": "zap",
+          "en": "INNOVATION",
+          "title": "Innovation",
+          "text": "Digital solutions and modern tools that scale as our clients grow."
+        },
+        {
+          "icon": "check-circle",
+          "en": "COMMITMENT",
+          "title": "Commitment",
+          "text": "Continuous follow-up, respect for deadlines, and ownership of results."
+        },
+        {
+          "icon": "eye",
+          "en": "TRANSPARENCY",
+          "title": "Transparency",
+          "text": "Scope, cost and KPIs that are clear from day one."
+        },
+        {
+          "icon": "award",
+          "en": "PROFESSIONALISM",
+          "title": "Professionalism",
+          "text": "Structured delivery and clear quality standards worthy of our clients’ trust."
+        }
+      ]
+    },
+    "numbers": {
+      "overline": "AMPLIQ IN NUMBERS",
+      "title": "Experience measured by results"
+    },
+    "leadership": {
+      "overline": "LEADERSHIP",
+      "title": "Leadership",
+      "people": [
+        {
+          "photo": "/assets/img/team/nayef.webp",
+          "name": "Nayef bin Samir bin Abboud Al Madhash",
+          "role": "Chairman of the Board",
+          "bio": "Leads the group’s direction with a strategic vision that anticipates opportunities and opens new horizons for growth."
+        },
+        {
+          "photo": "/assets/img/team/abdulrahman.webp",
+          "name": "Abdulrahman Mohammed",
+          "role": "General Manager – Marketing & Business Management",
+          "bio": "More than 13 years of experience in marketing, project management and digital transformation across 4 Arab markets, having managed more than 150 brands."
+        }
+      ]
+    }
+  }
+}

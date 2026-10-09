@@ -1,0 +1,232 @@
+{
+  "ar": {
+    "slug": "human-resources",
+    "order": 2,
+    "icon": "users",
+    "overline": "HUMAN RESOURCES",
+    "title": "إدارة الموارد البشرية",
+    "short": "نبني الفرق، وننظّم بيئة العمل، ونضمن الامتثال للأنظمة.",
+    "points": [
+      "الهياكل والأوصاف الوظيفية",
+      "الاستقطاب والتوظيف",
+      "السياسات واللوائح",
+      "إدارة الأداء والتطوير",
+      "التوطين والامتثال"
+    ],
+    "meta": {
+      "title": "إدارة الموارد البشرية | Ampliq",
+      "description": "هياكل تنظيمية، وأوصاف وظيفية، واستقطاب وتوظيف، ولوائح وفق نظام العمل السعودي، وإدارة أداء، وتوطين. خدمة إدارة الموارد البشرية من Ampliq."
+    },
+    "lead": "قسم متخصص يساعد المنشآت على بناء فرق قوية، وتنظيم بيئة العمل، والامتثال للأنظمة؛ من التأسيس حتى التطوير.",
+    "overview": [
+      "نبني الفرق، وننظّم بيئة العمل، ونضمن الامتثال للأنظمة. نبدأ بالهيكل التنظيمي والأوصاف الوظيفية، ثم نبني الاستقطاب والسياسات وإدارة الأداء، ونتابع مؤشرات الموارد البشرية بتقارير دورية.",
+      "نؤمن بأن المنشأة لا تحتاج بالضرورة إلى بناء كل الوظائف داخلياً منذ البداية؛ لذلك نعمل كامتداد لفريقك، بتكلفة مرنة ونتائج قابلة للقياس."
+    ],
+    "offer": {
+      "title": "ماذا نقدم",
+      "items": [
+        {
+          "icon": "grid",
+          "title": "الهياكل التنظيمية",
+          "text": "تصميم الهيكل والأقسام وخطوط الصلاحيات بما يناسب حجم المنشأة."
+        },
+        {
+          "icon": "file-text",
+          "title": "الأوصاف الوظيفية",
+          "text": "بطاقة لكل وظيفة تحدد المهام والمؤهلات ومؤشرات الأداء."
+        },
+        {
+          "icon": "search",
+          "title": "الاستقطاب والتوظيف",
+          "text": "تحديد الاحتياج، والإعلان، والفرز، والمقابلات حتى التعيين."
+        },
+        {
+          "icon": "book-open",
+          "title": "السياسات واللوائح",
+          "text": "لائحة تنظيم العمل والسياسات الداخلية وفق نظام العمل السعودي."
+        },
+        {
+          "icon": "target",
+          "title": "إدارة الأداء",
+          "text": "مؤشرات أداء فردية، ودورات تقييم، وخطط تحسين واضحة."
+        },
+        {
+          "icon": "dollar-sign",
+          "title": "سلم الرواتب والمزايا",
+          "text": "هيكلة الأجور والبدلات والحوافز بشكل عادل وتنافسي."
+        },
+        {
+          "icon": "trending-up",
+          "title": "التدريب والتطوير",
+          "text": "تحليل الاحتياج التدريبي، وبناء خطط تطوير الموظفين."
+        },
+        {
+          "icon": "shield",
+          "title": "التوطين والامتثال",
+          "text": "دعم متطلبات التوطين والامتثال للأنظمة ذات العلاقة."
+        }
+      ]
+    },
+    "results": {
+      "title": "ماذا يحصل عليه العميل؟",
+      "lead": "مخرجات واضحة ومؤشرات نتابعها ونرفع بها التقارير بشكل دوري.",
+      "outputsTitle": "مخرجات العمل",
+      "outputs": [
+        "هيكل تنظيمي معتمد ومصفوفة صلاحيات",
+        "دليل أوصاف وظيفية لكل الوظائف",
+        "لائحة تنظيم العمل والسياسات الداخلية",
+        "نظام تقييم أداء ونماذج جاهزة للتطبيق",
+        "سلم رواتب ومزايا وحوافز واضح",
+        "تقرير دوري عن مؤشرات الموارد البشرية"
+      ],
+      "metricsTitle": "مؤشرات نتابعها",
+      "metrics": [
+        "مدة شغل الوظيفة",
+        "تكلفة التوظيف",
+        "معدل الدوران الوظيفي",
+        "نسبة التوطين",
+        "رضا الموظفين",
+        "إنجاز أهداف الأداء",
+        "ساعات التدريب",
+        "الامتثال للأنظمة"
+      ]
+    },
+    "faq": [
+      {
+        "q": "هل تساعدون المنشآت الجديدة في تأسيس الموارد البشرية من الصفر؟",
+        "a": "نعم. نبدأ بالهيكل التنظيمي والأوصاف الوظيفية والسياسات، ثم نبني الاستقطاب وإدارة الأداء؛ من التأسيس حتى التطوير."
+      },
+      {
+        "q": "هل اللوائح التي تعدّونها متوافقة مع نظام العمل السعودي؟",
+        "a": "نعدّ لائحة تنظيم العمل والسياسات الداخلية وفق نظام العمل السعودي، وندعم متطلبات التوطين والامتثال للأنظمة ذات العلاقة."
+      },
+      {
+        "q": "هل تتولون التوظيف نيابة عنا؟",
+        "a": "نعم. نحدد الاحتياج، ونعلن عن الوظيفة، ونفرز المتقدمين، ونجري المقابلات حتى التعيين."
+      },
+      {
+        "q": "كيف تقيسون أثر عملكم؟",
+        "a": "نتابع مؤشرات مثل مدة شغل الوظيفة وتكلفة التوظيف ومعدل الدوران الوظيفي ونسبة التوطين، ونرفع تقريراً دورياً عنها."
+      },
+      {
+        "q": "هل يمكن التعاقد على مهمة واحدة مثل سلم الرواتب؟",
+        "a": "نعم، عبر نموذج المشروع المحدد: نطاق وجدول زمني ومخرجات واضحة تُسلَّم بالكامل."
+      }
+    ]
+  },
+  "en": {
+    "slug": "human-resources",
+    "order": 2,
+    "icon": "users",
+    "overline": "HUMAN RESOURCES",
+    "title": "Human resources management",
+    "short": "We build teams, organize the workplace and ensure regulatory compliance.",
+    "points": [
+      "Org structures & job descriptions",
+      "Talent acquisition & recruitment",
+      "Policies & regulations",
+      "Performance management & development",
+      "Saudization & compliance"
+    ],
+    "meta": {
+      "title": "Human Resources Management | Ampliq",
+      "description": "Org structures, job descriptions, recruitment, work regulations aligned with the Saudi Labor Law, performance management and Saudization. HR management by Ampliq."
+    },
+    "lead": "A specialized practice that helps organizations build strong teams, organize the workplace and stay compliant — from setup to development.",
+    "overview": [
+      "We build teams, organize the workplace and ensure regulatory compliance. We start with the org structure and job descriptions, then build recruitment, policies and performance management, and track HR indicators with regular reports.",
+      "We believe an organization doesn’t have to build every function in-house from day one. That’s why we work as an extension of your team — at a flexible cost, with measurable results."
+    ],
+    "offer": {
+      "title": "What we offer",
+      "items": [
+        {
+          "icon": "grid",
+          "title": "Organizational structures",
+          "text": "Designing the structure, departments and lines of authority to suit the organization’s size."
+        },
+        {
+          "icon": "file-text",
+          "title": "Job descriptions",
+          "text": "A card for every role that defines its tasks, qualifications and KPIs."
+        },
+        {
+          "icon": "search",
+          "title": "Talent acquisition & recruitment",
+          "text": "Defining needs, advertising, screening and interviewing — all the way to hiring."
+        },
+        {
+          "icon": "book-open",
+          "title": "Policies & regulations",
+          "text": "Work regulations and internal policies in line with the Saudi Labor Law."
+        },
+        {
+          "icon": "target",
+          "title": "Performance management",
+          "text": "Individual KPIs, appraisal cycles and clear improvement plans."
+        },
+        {
+          "icon": "dollar-sign",
+          "title": "Salary scales & benefits",
+          "text": "Structuring pay, allowances and incentives fairly and competitively."
+        },
+        {
+          "icon": "trending-up",
+          "title": "Training & development",
+          "text": "Training needs analysis and employee development plans."
+        },
+        {
+          "icon": "shield",
+          "title": "Saudization & compliance",
+          "text": "Supporting Saudization requirements and compliance with the relevant regulations."
+        }
+      ]
+    },
+    "results": {
+      "title": "What do you get?",
+      "lead": "Clear deliverables, and KPIs we track and report on regularly.",
+      "outputsTitle": "Deliverables",
+      "outputs": [
+        "An approved org structure and authority matrix",
+        "A job description manual covering every role",
+        "Work regulations and internal policies",
+        "A performance appraisal system with ready-to-use forms",
+        "A clear salary, benefits and incentives scale",
+        "A regular report on HR indicators"
+      ],
+      "metricsTitle": "KPIs we track",
+      "metrics": [
+        "Time to fill",
+        "Cost per hire",
+        "Employee turnover rate",
+        "Saudization rate",
+        "Employee satisfaction",
+        "Performance goal achievement",
+        "Training hours",
+        "Regulatory compliance"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Do you help new organizations set up HR from scratch?",
+        "a": "Yes. We start with the org structure, job descriptions and policies, then build recruitment and performance management — from setup to development."
+      },
+      {
+        "q": "Are the regulations you prepare aligned with the Saudi Labor Law?",
+        "a": "We prepare work regulations and internal policies in line with the Saudi Labor Law, and support Saudization requirements and compliance with the relevant regulations."
+      },
+      {
+        "q": "Can you handle recruitment on our behalf?",
+        "a": "Yes. We define the need, advertise the role, screen applicants and run interviews — all the way to hiring."
+      },
+      {
+        "q": "How do you measure the impact of your work?",
+        "a": "We track indicators such as time to fill, cost per hire, employee turnover and Saudization rate, and report on them regularly."
+      },
+      {
+        "q": "Can we engage you for a single task, such as a salary scale?",
+        "a": "Yes, through the defined project model: a clear scope, timeline and deliverables, handed over in full."
+      }
+    ]
+  }
+}

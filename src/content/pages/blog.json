@@ -1,0 +1,34 @@
+{
+  "ar": {
+    "meta": {
+      "title": "المدونة | Ampliq",
+      "description": "مقالات عملية في التسويق الرقمي وإدارة الموارد البشرية وإنشاء المواقع، من خبرة فريق Ampliq."
+    },
+    "hero": {
+      "overline": "INSIGHTS",
+      "title": "المدونة",
+      "lead": "أفكار عملية في التسويق والموارد البشرية والمواقع، من خبرة فريق Ampliq."
+    },
+    "all": "الكل",
+    "filterLabel": "تصفية حسب التصنيف",
+    "searchLabel": "ابحث في المقالات",
+    "searchPh": "ابحث بكلمة…",
+    "empty": "لا توجد مقالات مطابقة. جرّب كلمة أخرى أو اعرض كل التصنيفات."
+  },
+  "en": {
+    "meta": {
+      "title": "Blog | Ampliq",
+      "description": "Practical articles on digital marketing, human resources management and building websites, from the Ampliq team."
+    },
+    "hero": {
+      "overline": "INSIGHTS",
+      "title": "Blog",
+      "lead": "Practical ideas on marketing, HR and websites, from the Ampliq team."
+    },
+    "all": "All",
+    "filterLabel": "Filter by category",
+    "searchLabel": "Search articles",
+    "searchPh": "Search…",
+    "empty": "No matching articles. Try another word or show all categories."
+  }
+}

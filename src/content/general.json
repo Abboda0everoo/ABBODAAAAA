@@ -1,0 +1,310 @@
+{
+  "ar": {
+    "ui": {
+      "skip": "تخطَّ إلى المحتوى",
+      "menu": "القائمة",
+      "close": "إغلاق القائمة",
+      "mainNav": "التنقل الرئيسي",
+      "breadcrumb": "مسار التنقل",
+      "home": "الرئيسية",
+      "switchShort": "EN",
+      "switchLabel": "English",
+      "switchAria": "عرض هذه الصفحة بالإنجليزية",
+      "contactCta": "تواصل معنا",
+      "bookCta": "احجز استشارة",
+      "servicesCta": "استكشف خدماتنا",
+      "details": "التفاصيل",
+      "readArticle": "اقرأ المقال",
+      "allArticles": "كل المقالات",
+      "backToTop": "العودة إلى الأعلى",
+      "logoAlt": "Ampliq — Amplify Your Business Impact",
+      "tagline": "AMPLIFY YOUR BUSINESS IMPACT",
+      "bestFor": "مناسب لـ:",
+      "by": "فريق Ampliq",
+      "published": "تاريخ النشر",
+      "updated": "آخر تحديث",
+      "toc": "محتويات المقال",
+      "share": "شارك المقال",
+      "copyLink": "نسخ الرابط",
+      "copied": "تم نسخ الرابط",
+      "related": "مقالات ذات صلة",
+      "faqTitle": "أسئلة شائعة",
+      "moreTitle": "قد يهمك أيضاً",
+      "whatsapp": "تواصل عبر واتساب",
+      "whatsappMessage": "مرحباً Ampliq، أتواصل معكم من صفحة:",
+      "cookieText": "نستخدم ملفات تعريف الارتباط لقياس زيارات الموقع وتحسينه، ولا نفعّلها إلا بموافقتك.",
+      "cookieAccept": "موافق",
+      "cookieReject": "رفض",
+      "cookieMore": "سياسة الخصوصية"
+    },
+    "nav": [
+      {
+        "key": "about",
+        "label": "من نحن"
+      },
+      {
+        "key": "services",
+        "label": "خدماتنا"
+      },
+      {
+        "key": "clients",
+        "label": "عملاؤنا"
+      },
+      {
+        "key": "blog",
+        "label": "المدونة"
+      }
+    ],
+    "footer": {
+      "about": "Ampliq مجموعة سعودية مقرها الرياض، متخصصة في التسويق الرقمي وإدارة الموارد البشرية والبرمجة وإنشاء المواقع.",
+      "company": "الشركة",
+      "services": "الخدمات",
+      "contact": "التواصل",
+      "rights": "جميع الحقوق محفوظة.",
+      "privacy": "سياسة الخصوصية",
+      "terms": "شروط الاستخدام"
+    },
+    "cta": {
+      "title": "لا تكتفِ بالظهور.",
+      "accent": "ضاعف أثرك.",
+      "text": "لنصنع أثراً أكبر معاً. أخبرنا عن هدفك، وسنقترح عليك المسار ونموذج التعاقد الأنسب لمنشأتك."
+    },
+    "contact": {
+      "location": "الرياض، المملكة العربية السعودية",
+      "labels": {
+        "phone": "الهاتف",
+        "email": "البريد الإلكتروني",
+        "whatsapp": "واتساب",
+        "location": "الموقع"
+      },
+      "placeholders": {
+        "phone": "[رقم الهاتف]",
+        "email": "[البريد الإلكتروني]",
+        "whatsapp": "[رقم واتساب]"
+      },
+      "steps": {
+        "title": "ماذا يحدث بعد التواصل؟",
+        "items": [
+          {
+            "title": "نفهم هدفك",
+            "text": "نراجع طلبك ونتواصل معك لفهم الهدف والوضع الحالي."
+          },
+          {
+            "title": "نقترح المسار",
+            "text": "نحدد الخدمة ونموذج التعاقد والنطاق المناسب لمنشأتك."
+          },
+          {
+            "title": "نبدأ ونقيس",
+            "text": "نتفق على المخرجات ومؤشرات الأداء، ثم نبدأ التنفيذ."
+          }
+        ]
+      }
+    },
+    "form": {
+      "title": "أرسل لنا طلبك",
+      "intro": "الحقول المعلَّمة بـ * مطلوبة.",
+      "name": "الاسم الكامل",
+      "namePh": "مثال: محمد العتيبي",
+      "mobile": "رقم الجوال",
+      "mobilePh": "05XXXXXXXX",
+      "email": "البريد الإلكتروني",
+      "emailPh": "name@company.com",
+      "company": "الجهة / المنشأة",
+      "companyPh": "اختياري",
+      "service": "الخدمة المطلوبة",
+      "serviceOptions": [
+        "التسويق الرقمي",
+        "إدارة الموارد البشرية",
+        "البرمجة وإنشاء المواقع",
+        "أكثر من خدمة",
+        "غير متأكد بعد"
+      ],
+      "budget": "الميزانية التقريبية",
+      "budgetOptions": [
+        "أقل من 10 آلاف ريال",
+        "من 10 إلى 30 ألف ريال",
+        "من 30 إلى 75 ألف ريال",
+        "أكثر من 75 ألف ريال",
+        "لم تُحدَّد بعد"
+      ],
+      "message": "كيف يمكننا مساعدتك؟",
+      "messagePh": "صف هدفك أو التحدي الذي تواجهه",
+      "consent": "أوافق على معالجة بياناتي للرد على طلبي وفق",
+      "consentLink": "سياسة الخصوصية",
+      "submit": "إرسال الطلب",
+      "sending": "جارٍ الإرسال…",
+      "select": "اختر",
+      "errors": {
+        "required": "هذا الحقل مطلوب.",
+        "email": "أدخل بريداً إلكترونياً صحيحاً، مثل name@company.com.",
+        "mobile": "أدخل رقم جوال سعودياً يبدأ بـ 05 ويتكون من 10 أرقام، أو بصيغة ‎+9665.",
+        "consent": "يلزم الموافقة على سياسة الخصوصية لإرسال الطلب.",
+        "summary": "راجع الحقول المعلَّمة ثم أعد الإرسال."
+      },
+      "success": "وصلنا طلبك. سنتواصل معك قريباً.",
+      "mailto": "فتحنا تطبيق البريد لديك برسالة جاهزة. أرسلها من هناك لتصلنا.",
+      "failed": "تعذّر إرسال الطلب. حاول مرة أخرى، أو تواصل معنا مباشرة.",
+      "notConnected": "لم يُربط النموذج بعد بوجهة استقبال. تواصل معنا مؤقتاً عبر بيانات التواصل.",
+      "subject": "طلب جديد من الموقع"
+    },
+    "notFound": {
+      "title": "الصفحة غير موجودة",
+      "text": "ربما نُقلت الصفحة أو تغيّر رابطها.",
+      "home": "العودة إلى الرئيسية"
+    }
+  },
+  "en": {
+    "ui": {
+      "skip": "Skip to content",
+      "menu": "Menu",
+      "close": "Close menu",
+      "mainNav": "Main navigation",
+      "breadcrumb": "Breadcrumb",
+      "home": "Home",
+      "switchShort": "عربي",
+      "switchLabel": "العربية",
+      "switchAria": "View this page in Arabic",
+      "contactCta": "Contact us",
+      "bookCta": "Book a consultation",
+      "servicesCta": "Explore our services",
+      "details": "Details",
+      "readArticle": "Read article",
+      "allArticles": "All articles",
+      "backToTop": "Back to top",
+      "logoAlt": "Ampliq — Amplify Your Business Impact",
+      "tagline": "AMPLIFY YOUR BUSINESS IMPACT",
+      "bestFor": "Best for:",
+      "by": "Ampliq team",
+      "published": "Published",
+      "updated": "Last updated",
+      "toc": "In this article",
+      "share": "Share this article",
+      "copyLink": "Copy link",
+      "copied": "Link copied",
+      "related": "Related articles",
+      "faqTitle": "Frequently asked questions",
+      "moreTitle": "You may also like",
+      "whatsapp": "Chat on WhatsApp",
+      "whatsappMessage": "Hello Ampliq, I'm contacting you from this page:",
+      "cookieText": "We use cookies to measure and improve site traffic, and only switch them on with your consent.",
+      "cookieAccept": "Accept",
+      "cookieReject": "Decline",
+      "cookieMore": "Privacy policy"
+    },
+    "nav": [
+      {
+        "key": "about",
+        "label": "About"
+      },
+      {
+        "key": "services",
+        "label": "Services"
+      },
+      {
+        "key": "clients",
+        "label": "Clients"
+      },
+      {
+        "key": "blog",
+        "label": "Blog"
+      }
+    ],
+    "footer": {
+      "about": "Ampliq is a Riyadh-based Saudi group specializing in digital marketing, human resources management, and web & software development.",
+      "company": "Company",
+      "services": "Services",
+      "contact": "Contact",
+      "rights": "All rights reserved.",
+      "privacy": "Privacy policy",
+      "terms": "Terms of use"
+    },
+    "cta": {
+      "title": "Don’t just be seen.",
+      "accent": "Amplify your impact.",
+      "text": "Let’s create a bigger impact together. Tell us about your goal, and we’ll suggest the right track and engagement model for your organization."
+    },
+    "contact": {
+      "location": "Riyadh, Saudi Arabia",
+      "labels": {
+        "phone": "Phone",
+        "email": "Email",
+        "whatsapp": "WhatsApp",
+        "location": "Location"
+      },
+      "placeholders": {
+        "phone": "[Phone number]",
+        "email": "[Email address]",
+        "whatsapp": "[WhatsApp number]"
+      },
+      "steps": {
+        "title": "What happens next?",
+        "items": [
+          {
+            "title": "We understand your goal",
+            "text": "We review your request and get in touch to understand your goal and current situation."
+          },
+          {
+            "title": "We suggest a track",
+            "text": "We define the service, engagement model and scope that fit your organization."
+          },
+          {
+            "title": "We start and measure",
+            "text": "We agree on deliverables and KPIs, then start delivery."
+          }
+        ]
+      }
+    },
+    "form": {
+      "title": "Send us your request",
+      "intro": "Fields marked * are required.",
+      "name": "Full name",
+      "namePh": "e.g. Sarah Ahmed",
+      "mobile": "Mobile number",
+      "mobilePh": "05XXXXXXXX",
+      "email": "Email",
+      "emailPh": "name@company.com",
+      "company": "Organization",
+      "companyPh": "Optional",
+      "service": "Service of interest",
+      "serviceOptions": [
+        "Digital marketing",
+        "Human resources management",
+        "Web & software development",
+        "More than one service",
+        "Not sure yet"
+      ],
+      "budget": "Approximate budget",
+      "budgetOptions": [
+        "Under SAR 10,000",
+        "SAR 10,000–30,000",
+        "SAR 30,000–75,000",
+        "Over SAR 75,000",
+        "Not decided yet"
+      ],
+      "message": "How can we help?",
+      "messagePh": "Describe your goal or the challenge you’re facing",
+      "consent": "I agree to my data being processed to answer my request, as described in the",
+      "consentLink": "privacy policy",
+      "submit": "Send request",
+      "sending": "Sending…",
+      "select": "Select",
+      "errors": {
+        "required": "This field is required.",
+        "email": "Enter a valid email address, like name@company.com.",
+        "mobile": "Enter a Saudi mobile number: 10 digits starting with 05, or in +9665 format.",
+        "consent": "Please accept the privacy policy to send your request.",
+        "summary": "Check the highlighted fields and send again."
+      },
+      "success": "We’ve received your request and will be in touch soon.",
+      "mailto": "We opened your email app with the message ready. Send it from there to reach us.",
+      "failed": "We couldn’t send your request. Try again, or contact us directly.",
+      "notConnected": "The form isn’t connected to an inbox yet. For now, please use the contact details.",
+      "subject": "New request from the website"
+    },
+    "notFound": {
+      "title": "Page not found",
+      "text": "The page may have moved or its link may have changed.",
+      "home": "Back to home"
+    }
+  }
+}

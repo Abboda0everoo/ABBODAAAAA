@@ -1,0 +1,26 @@
+{
+  "ar": {
+    "meta": {
+      "title": "تواصل معنا | Ampliq",
+      "description": "تواصل مع Ampliq في الرياض: أخبرنا عن هدفك في التسويق الرقمي أو الموارد البشرية أو إنشاء المواقع، وسنقترح المسار ونموذج التعاقد الأنسب."
+    },
+    "hero": {
+      "overline": "CONTACT",
+      "title": "تواصل معنا",
+      "lead": "أخبرنا عن هدفك، وسنقترح عليك المسار ونموذج التعاقد الأنسب لمنشأتك."
+    },
+    "infoTitle": "بيانات التواصل"
+  },
+  "en": {
+    "meta": {
+      "title": "Contact | Ampliq",
+      "description": "Contact Ampliq in Riyadh: tell us about your digital marketing, HR or website goal, and we’ll suggest the right track and engagement model."
+    },
+    "hero": {
+      "overline": "CONTACT",
+      "title": "Contact us",
+      "lead": "Tell us about your goal, and we’ll suggest the right track and engagement model for your organization."
+    },
+    "infoTitle": "Contact details"
+  }
+}

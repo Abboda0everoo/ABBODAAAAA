@@ -1,0 +1,19 @@
+{
+  "name": "ampliq-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ampliq company website — Arabic and English, multi-page static site.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "dev": "node build.mjs && node scripts/serve.mjs",
+    "og": "node scripts/og.mjs"
+  },
+  "dependencies": {
+    "marked": "^16.4.2"
+  }
+}
