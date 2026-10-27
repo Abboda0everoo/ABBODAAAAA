@@ -43,6 +43,12 @@
       "skillPath": "realtime/SKILL.md",
       "computedHash": "930e40ebd1b17dd2bf4f723ee598c81daca92f32a43d10ab77184fb38c23b30e"
     },
+    "reel-studio": {
+      "source": "hadjidoro/reel-studio",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "7988d6027a806cdb53fde9365252ee0f9732689110cf30a739aa80e8b3301560"
+    },
     "setup-api-key": {
       "source": "elevenlabs/skills",
       "sourceType": "github",
