@@ -258,6 +258,7 @@ export function cmsConfig({ siteUrl = "" } = {}) {
               { name: "snapchat", label: "Snapchat", widget: "string", required: false, pattern: ["^$|^https://", "يبدأ الرابط بـ https://"] },
               { name: "linkedin", label: "LinkedIn", widget: "string", required: false, pattern: ["^$|^https://", "يبدأ الرابط بـ https://"] },
               { name: "x", label: "X (تويتر)", widget: "string", required: false, pattern: ["^$|^https://", "يبدأ الرابط بـ https://"] },
+              { name: "youtube", label: "YouTube", widget: "string", required: false, pattern: ["^$|^https://", "يبدأ الرابط بـ https://"] },
             ],
           },
           { name: "siteUrl", label: "رابط الموقع", widget: "string", required: false, hint: "مثل: https://ampliq.sa — يُستخدم لروابط محركات البحث وخريطة الموقع.", pattern: ["^$|^https://[^\\s/]+$", "اكتب الرابط كاملاً بدون شرطة في النهاية، مثل: https://ampliq.sa"] },
