@@ -141,7 +141,8 @@ ${ctx.hasAlt ? `<link rel="alternate" hreflang="${lang}" href="${abs(ctx.path)}"
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(meta.title)}</title>
 <meta name="description" content="${esc(meta.description)}">
-<meta name="theme-color" content="#07111F">${seo}
+<meta name="theme-color" content="#07111F">${config.googleVerification ? `
+<meta name="google-site-verification" content="${esc(config.googleVerification)}">` : ""}${seo}
 <meta property="og:type" content="${ogType}">
 <meta property="og:site_name" content="Ampliq">
 <meta property="og:title" content="${esc(meta.title)}">

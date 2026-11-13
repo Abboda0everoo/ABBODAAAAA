@@ -234,6 +234,7 @@ export function cmsConfig({ siteUrl = "" } = {}) {
           { name: "siteUrl", label: "رابط الموقع", widget: "string", required: false, hint: "مثل: https://ampliq.sa — يُستخدم لروابط محركات البحث وخريطة الموقع.", pattern: ["^$|^https://[^\\s/]+$", "اكتب الرابط كاملاً بدون شرطة في النهاية، مثل: https://ampliq.sa"] },
           { name: "formEndpoint", label: "رابط استقبال نموذج التواصل", widget: "string", required: false, hint: "رابط خدمة مثل Formspree. بدونه يُرسل النموذج عبر البريد الإلكتروني." },
           { name: "gtmId", label: "معرّف Google Tag Manager", widget: "string", required: false, hint: "مثل: GTM-XXXXXXX", pattern: ["^$|^GTM-[A-Z0-9]+$", "يبدأ بـ GTM-"] },
+          { name: "googleVerification", label: "كود التحقق من Google Search Console", widget: "string", required: false, hint: "الكود الموجود داخل content في وسم google-site-verification فقط، بدون الوسم كاملاً.", pattern: ["^$|^[A-Za-z0-9_-]+$", "الصق الكود فقط، بدون <meta> وعلامات التنصيص"] },
         ],
       },
       {

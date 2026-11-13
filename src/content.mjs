@@ -167,6 +167,7 @@ export async function loadContent() {
     contact: { email: settings.contact?.email || "", phone: settings.contact?.phone || "", whatsapp: settings.contact?.whatsapp || "" },
     form: { endpoint: settings.formEndpoint || "" },
     gtmId: settings.gtmId || "",
+    googleVerification: (settings.googleVerification || "").trim(),
     year: new Date().getFullYear(),
     clients: (clientsFile.clients || []).map((c) => ({ ar: normalizeArabic(c.name_ar), en: c.name_en, logo: c.logo, bg: c.bg || "" })),
   };
