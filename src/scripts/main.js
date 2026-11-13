@@ -107,7 +107,7 @@
   // ---------- WhatsApp button mentions the current page ----------
   const waWidget = document.querySelector("[data-wa-widget]");
   if (waWidget) {
-    const waHref = `${waWidget.dataset.waBase}?text=${encodeURIComponent(`${waWidget.dataset.waText} ${document.title} — ${window.location.href.split("#")[0]}`)}`;
+    const waHref = `${waWidget.dataset.waBase}?text=${encodeURIComponent(waWidget.dataset.waText)}`;
     waWidget.querySelectorAll("[data-wa-link]").forEach((a) => { a.href = waHref; });
 
     // The message bubble pops up once per visit, a few seconds after the page
