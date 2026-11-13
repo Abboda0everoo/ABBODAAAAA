@@ -166,7 +166,9 @@ export async function loadContent() {
     siteUrl: (process.env.SITE_URL || settings.siteUrl || (process.env.CONTEXT === "production" ? process.env.URL : "") || "").replace(/\/+$/, ""),
     contact: { email: settings.contact?.email || "", phone: settings.contact?.phone || "", whatsapp: settings.contact?.whatsapp || "" },
     form: { endpoint: settings.formEndpoint || "" },
-    gtmId: settings.gtmId || "",
+    // One or more GTM containers, separated by commas or spaces.
+    gtmIds: [...new Set((settings.gtmId || "").toUpperCase().match(/GTM-[A-Z0-9]+/g) || [])],
+    get gtmId() { return this.gtmIds.join(","); },
     googleVerification: (settings.googleVerification || "").trim(),
     year: new Date().getFullYear(),
     clients: (clientsFile.clients || []).map((c) => ({ ar: normalizeArabic(c.name_ar), en: c.name_en, logo: c.logo, bg: c.bg || "" })),

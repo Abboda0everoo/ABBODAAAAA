@@ -119,8 +119,7 @@ function widgets(ctx, title) {
 // can detect it), but analytics storage stays "denied" — no analytics cookies —
 // until the visitor accepts in the cookie banner. Advertising storage is never
 // granted: the privacy policy says the site uses no advertising cookies.
-function gtmHead(id) {
-  const safe = id.replace(/[^A-Z0-9-]/gi, "");
+function gtmHead(ids) {
   return `
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -130,7 +129,7 @@ function gtmHead(id) {
   gtag('js', new Date());
   dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
 </script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=${safe}"></script>`;
+${ids.map((id) => `<script async src="https://www.googletagmanager.com/gtm.js?id=${id}"></script>`).join("\n")}`;
 }
 
 export function renderDocument(ctx, page) {
@@ -176,7 +175,7 @@ ${ctx.hasAlt ? `<link rel="alternate" hreflang="${lang}" href="${abs(ctx.path)}"
 <link rel="apple-touch-icon" href="${ctx.asset("icons/apple-touch-icon.png")}">
 <link rel="manifest" href="${ctx.file("site.webmanifest")}">
 ${FONT_PRELOAD[lang].map((f) => `<link rel="preload" href="${ctx.asset(f)}" as="font" type="font/woff2" crossorigin>`).join("\n")}
-<link rel="stylesheet" href="${ctx.asset("css/main.css")}?v=${ctx.assetVersion}">${config.gtmId ? gtmHead(config.gtmId) : ""}
+<link rel="stylesheet" href="${ctx.asset("css/main.css")}?v=${ctx.assetVersion}">${config.gtmIds.length ? gtmHead(config.gtmIds) : ""}
 ${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, "\\u003c")}</script>`).join("\n")}
 <script id="site-config" type="application/json">${JSON.stringify(siteConfig)}</script>
 </head>
