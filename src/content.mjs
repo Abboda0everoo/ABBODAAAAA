@@ -166,7 +166,7 @@ export async function loadContent() {
     siteUrl: (process.env.SITE_URL || settings.siteUrl || (process.env.CONTEXT === "production" ? process.env.URL : "") || "").replace(/\/+$/, ""),
     contact: { email: settings.contact?.email || "", phone: settings.contact?.phone || "", whatsapp: settings.contact?.whatsapp || "" },
     // Official social accounts (shown in the footer, contact page and schema sameAs).
-    social: ["instagram", "snapchat", "linkedin", "x"].map((key) => ({ key, url: (settings.social?.[key] || "").trim() })).filter((s) => /^https:\/\//.test(s.url)),
+    social: ["instagram", "snapchat", "linkedin", "x", "youtube"].map((key) => ({ key, url: (settings.social?.[key] || "").trim() })).filter((s) => /^https:\/\//.test(s.url)),
     form: { endpoint: settings.formEndpoint || "" },
     // One or more GTM containers, separated by commas or spaces.
     gtmIds: [...new Set((settings.gtmId || "").toUpperCase().match(/GTM-[A-Z0-9]+/g) || [])],

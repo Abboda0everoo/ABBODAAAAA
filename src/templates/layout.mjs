@@ -17,17 +17,19 @@ export function contactMethods(ctx) {
   ];
 }
 
-const SOCIAL_NAMES = { instagram: "Instagram", snapchat: "Snapchat", linkedin: "LinkedIn", x: "X" };
+const SOCIAL_NAMES = { instagram: "Instagram", snapchat: "Snapchat", linkedin: "LinkedIn", x: "X", youtube: "YouTube" };
 
 // Icon links to the official social accounts (dashboard → Settings).
-export function socialLinks(ctx, cls = "") {
-  const { social } = ctx.config;
-  if (!social.length) return "";
+// The footer version also ends with an email icon.
+export function socialLinks(ctx, cls = "", { email = false } = {}) {
+  const { social, contact } = ctx.config;
+  const mail = email && contact.email ? `<li><a href="mailto:${esc(contact.email)}" data-contact="email" aria-label="${ctx.lang === "ar" ? "البريد الإلكتروني" : "Email"}: ${esc(contact.email)}" title="${esc(contact.email)}">${icon("mail")}</a></li>` : "";
+  if (!social.length && !mail) return "";
   const label = ctx.lang === "ar" ? "حسابات Ampliq على مواقع التواصل" : "Ampliq on social media";
   const newTab = ctx.lang === "ar" ? "(تفتح في نافذة جديدة)" : "(opens in a new tab)";
   return `<ul class="social-links${cls ? ` ${cls}` : ""}" aria-label="${label}">${social
     .map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener me" data-social="${s.key}" aria-label="${SOCIAL_NAMES[s.key]} ${newTab}" title="${SOCIAL_NAMES[s.key]}">${brandIcon(s.key)}</a></li>`)
-    .join("")}</ul>`;
+    .join("")}${mail}</ul>`;
 }
 
 function header(ctx, navKey) {
@@ -80,7 +82,7 @@ function footer(ctx) {
         <img src="${ctx.asset("img/brand/ampliq-wordmark-dark.webp")}" alt="${esc(t.ui.logoAlt)}" width="162" height="40" loading="lazy">
         <p class="overline" lang="en" dir="ltr">${esc(t.ui.tagline)}</p>
         <p>${txt(t.footer.about, lang)}</p>
-        ${socialLinks(ctx)}
+        ${socialLinks(ctx, "", { email: true })}
       </div>
       <nav aria-labelledby="f-company">
         <h2 class="footer-title" id="f-company">${esc(t.footer.company)}</h2>
