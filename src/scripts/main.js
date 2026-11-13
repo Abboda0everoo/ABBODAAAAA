@@ -104,13 +104,46 @@
   }
 
   // ---------- WhatsApp button mentions the current page ----------
-  const wa = document.querySelector(".wa-float");
-  if (wa) wa.href = `${wa.dataset.waBase}?text=${encodeURIComponent(`${wa.dataset.waText} ${document.title} — ${window.location.href.split("#")[0]}`)}`;
+  const waWidget = document.querySelector("[data-wa-widget]");
+  if (waWidget) {
+    const waHref = `${waWidget.dataset.waBase}?text=${encodeURIComponent(`${waWidget.dataset.waText} ${document.title} — ${window.location.href.split("#")[0]}`)}`;
+    waWidget.querySelectorAll("[data-wa-link]").forEach((a) => { a.href = waHref; });
+
+    // The message bubble pops up once per visit, a few seconds after the page
+    // opens (and only once the cookie banner is out of the way).
+    const bubble = waWidget.querySelector("[data-wa-bubble]");
+    const BUBBLE_KEY = "ampliq-wa-bubble";
+    const seen = () => { try { return sessionStorage.getItem(BUBBLE_KEY); } catch { return "1"; } };
+    const markSeen = () => { try { sessionStorage.setItem(BUBBLE_KEY, "1"); } catch { /* storage unavailable */ } };
+    const closeBubble = () => { if (bubble) bubble.hidden = true; markSeen(); };
+    const showBubble = () => {
+      const banner = document.querySelector("[data-consent]");
+      if (!bubble || seen()) return;
+      if (banner && !banner.hidden) { setTimeout(showBubble, 3000); return; }
+      bubble.hidden = false;
+      markSeen();
+    };
+    if (bubble && !seen()) setTimeout(showBubble, 5000);
+    waWidget.querySelector("[data-wa-close]")?.addEventListener("click", closeBubble);
+    bubble?.querySelector("[data-wa-link]")?.addEventListener("click", closeBubble);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && bubble && !bubble.hidden) closeBubble(); });
+
+    // Keep the button above the cookie banner while the banner is open.
+    const banner = document.querySelector("[data-consent]");
+    if (banner) {
+      const update = () => document.documentElement.style.setProperty("--consent-offset", banner.hidden || window.innerWidth > 900 ? "0px" : `${banner.offsetHeight + 12}px`);
+      new MutationObserver(update).observe(banner, { attributes: true, attributeFilter: ["hidden"] });
+      window.addEventListener("resize", update);
+      requestAnimationFrame(update);
+    }
+  }
 
   // ---------- Conversion events for direct contact ----------
   document.addEventListener("click", (e) => {
     const link = e.target.closest("[data-contact]");
     if (link) track("contact_click", { method: link.dataset.contact });
+    const social = e.target.closest("[data-social]");
+    if (social) track("click_social", { network: social.dataset.social });
   });
 
   // ---------- Contact form ----------

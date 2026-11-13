@@ -1,7 +1,7 @@
 // Reusable page sections, styled by src/styles/main.css.
 
 import { esc, txt, latin, num, icon, brandIcon, formatDate } from "../lib.mjs";
-import { contactMethods } from "./layout.mjs";
+import { contactMethods, socialLinks } from "./layout.mjs";
 
 const pad2 = (i) => String(i + 1).padStart(2, "0");
 
@@ -225,7 +225,7 @@ export function contactInfo(ctx) {
       return `<li class="info-row"><span class="info-icon">${m.icon}</span><span><small>${esc(t.contact.labels[m.key])}</small>${value}</span></li>`;
     })
     .join("");
-  return `<ul class="info-list" role="list">${rows}<li class="info-row"><span class="info-icon">${icon("map-pin")}</span><span><small>${esc(t.contact.labels.location)}</small>${esc(t.contact.location)}</span></li></ul>`;
+  return `<ul class="info-list" role="list">${rows}<li class="info-row"><span class="info-icon">${icon("map-pin")}</span><span><small>${esc(t.contact.labels.location)}</small>${esc(t.contact.location)}</span></li></ul>${socialLinks(ctx, "social-links--light")}`;
 }
 
 export function nextSteps(ctx) {

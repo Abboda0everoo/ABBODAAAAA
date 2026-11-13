@@ -15,6 +15,7 @@ const org = (ctx) => ({
   ...(ctx.config.siteUrl ? { url: `${ctx.config.siteUrl}/`, logo: absUrl(ctx, "assets/icons/icon-512.png") } : {}),
   ...(ctx.config.contact.email ? { email: ctx.config.contact.email } : {}),
   ...(ctx.config.contact.phone ? { telephone: ctx.config.contact.phone } : {}),
+  ...(ctx.config.social.length ? { sameAs: ctx.config.social.map((s) => s.url) } : {}),
 });
 function breadcrumbLd(ctx, crumbs) {
   if (!ctx.config.siteUrl) return [];
