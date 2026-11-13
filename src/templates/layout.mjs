@@ -112,7 +112,7 @@ function widgets(ctx, title) {
   let out = "";
   const wa = config.contact.whatsapp.replace(/[^\d]/g, "");
   if (wa) {
-    const text = `${t.ui.whatsappMessage} ${title}`;
+    const text = t.ui.whatsappMessage;
     const href = `https://wa.me/${wa}?text=${encodeURIComponent(text)}`;
     // Floating WhatsApp button on every page, with a small message bubble that
     // pops up once per visit (see main.js).
