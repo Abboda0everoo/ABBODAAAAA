@@ -45,7 +45,7 @@ Fill in **Settings → بيانات التواصل والربط** in the dashboa
 | `contact.email`, `contact.phone` | Shown on the contact page, home page and footer as working links. Until set, bracketed placeholders are shown. |
 | `contact.whatsapp` | Digits only, e.g. `9665XXXXXXXX`. Turns on the floating WhatsApp button (its message names the current page). |
 | `formEndpoint` | Where the contact form posts (JSON `POST`, any 2xx = success) — e.g. Formspree, Getform or your own API. Without it, the form opens the visitor's email app addressed to `contact.email`; with neither, it says the form isn't connected yet. |
-| `gtmId` | Google Tag Manager container. Shows a cookie-consent banner and loads GTM only after the visitor accepts. The site pushes `generate_lead` (form sent), `click_phone` / `click_email` / `click_whatsapp`, `language_switch` and `view_service` events to `dataLayer` — never what a visitor typed. |
+| `gtmId` | Google Tag Manager container. GTM loads on every page with Consent Mode v2: analytics storage stays denied (no analytics cookies) until the visitor accepts in the cookie banner; advertising storage is never granted. The site pushes `generate_lead` (form sent), `click_phone` / `click_email` / `click_whatsapp`, `language_switch` and `view_service` events to `dataLayer` — never what a visitor typed. |
 
 Also review before launch:
 

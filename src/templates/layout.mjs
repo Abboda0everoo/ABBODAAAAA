@@ -116,6 +116,24 @@ function widgets(ctx, title) {
   return out;
 }
 
+// Google Tag Manager with Consent Mode v2. GTM loads on every page (so Google
+// can detect it), but analytics storage stays "denied" — no analytics cookies —
+// until the visitor accepts in the cookie banner. Advertising storage is never
+// granted: the privacy policy says the site uses no advertising cookies.
+function gtmHead(id) {
+  const safe = id.replace(/[^A-Z0-9-]/gi, "");
+  return `
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
+  try { if (localStorage.getItem('ampliq-consent') === 'granted') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+  gtag('js', new Date());
+  dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+</script>
+<script async src="https://www.googletagmanager.com/gtm.js?id=${safe}"></script>`;
+}
+
 export function renderDocument(ctx, page) {
   const { t, lang, config } = ctx;
   const { meta, body, navKey = null, jsonld = [] } = page;
@@ -138,8 +156,9 @@ ${headTags(ctx, page)}
 <link rel="apple-touch-icon" href="${ctx.asset("icons/apple-touch-icon.png")}">
 <link rel="manifest" href="${ctx.file("site.webmanifest")}">
 ${FONT_PRELOAD[lang].map((f) => `<link rel="preload" href="${ctx.asset(f)}" as="font" type="font/woff2" crossorigin>`).join("\n")}
-<link rel="stylesheet" href="${ctx.asset("css/main.css")}?v=${ctx.assetVersion}">
-${[siteGraph(ctx), ...jsonld].map((j) => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, "\\u003c")}</script>`).join("\n")}
+<link rel="stylesheet" href="${ctx.asset("css/main.css")}?v=${ctx.assetVersion}">${config.gtmId ? gtmHead(config.gtmId) : ""}
+${[siteGraph(ctx), ...jsonld].map((j) => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, "\u003c")}</script>`).join("
+")}
 <script id="site-config" type="application/json">${JSON.stringify(siteConfig)}</script>
 </head>
 <body>
