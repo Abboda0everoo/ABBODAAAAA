@@ -190,27 +190,23 @@
     });
   });
 
-  // ---------- Cookie consent → Google Tag Manager ----------
+  // ---------- Cookie consent → Google Tag Manager (Consent Mode v2) ----------
+  // GTM itself is loaded in <head> with analytics storage denied; the banner
+  // only records the choice and updates consent.
   if (config.gtmId) {
     const KEY = "ampliq-consent";
     const banner = document.querySelector("[data-consent]");
-    const loadGtm = () => {
-      window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
-      const s = document.createElement("script");
-      s.async = true;
-      s.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(config.gtmId)}`;
-      document.head.appendChild(s);
-    };
+    const gtag = function () { window.dataLayer.push(arguments); };
     let choice = null;
     try { choice = localStorage.getItem(KEY); } catch { /* storage unavailable */ }
-    if (choice === "granted") loadGtm();
-    else if (choice !== "denied" && banner) banner.hidden = false;
+    if (choice !== "granted" && choice !== "denied" && banner) banner.hidden = false;
     banner?.querySelectorAll("[data-consent-choice]").forEach((b) =>
       b.addEventListener("click", () => {
         const value = b.dataset.consentChoice;
         try { localStorage.setItem(KEY, value); } catch { /* storage unavailable */ }
         banner.hidden = true;
-        if (value === "granted") loadGtm();
+        gtag("consent", "update", { analytics_storage: value === "granted" ? "granted" : "denied" });
+        track("consent_update", { analytics: value });
       })
     );
   }
