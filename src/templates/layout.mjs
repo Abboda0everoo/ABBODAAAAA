@@ -18,6 +18,19 @@ export function contactMethods(ctx) {
   ];
 }
 
+const SOCIAL_NAMES = { instagram: "Instagram", snapchat: "Snapchat", linkedin: "LinkedIn", x: "X" };
+
+// Icon links to the official social accounts (dashboard → Settings).
+export function socialLinks(ctx, cls = "") {
+  const { social } = ctx.config;
+  if (!social.length) return "";
+  const label = ctx.lang === "ar" ? "حسابات Ampliq على مواقع التواصل" : "Ampliq on social media";
+  const newTab = ctx.lang === "ar" ? "(تفتح في نافذة جديدة)" : "(opens in a new tab)";
+  return `<ul class="social-links${cls ? ` ${cls}` : ""}" aria-label="${label}">${social
+    .map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener me" data-social="${s.key}" aria-label="${SOCIAL_NAMES[s.key]} ${newTab}" title="${SOCIAL_NAMES[s.key]}">${brandIcon(s.key)}</a></li>`)
+    .join("")}</ul>`;
+}
+
 function header(ctx, navKey) {
   const { t } = ctx;
   const items = t.nav
@@ -68,6 +81,7 @@ function footer(ctx) {
         <img src="${ctx.asset("img/brand/ampliq-wordmark-dark.webp")}" alt="${esc(t.ui.logoAlt)}" width="162" height="40" loading="lazy">
         <p class="overline" lang="en" dir="ltr">${esc(t.ui.tagline)}</p>
         <p>${txt(t.footer.about, lang)}</p>
+        ${socialLinks(ctx)}
       </div>
       <nav aria-labelledby="f-company">
         <h2 class="footer-title" id="f-company">${esc(t.footer.company)}</h2>
@@ -100,8 +114,20 @@ function widgets(ctx, title) {
   const wa = config.contact.whatsapp.replace(/[^\d]/g, "");
   if (wa) {
     const text = `${t.ui.whatsappMessage} ${title}`;
+    const href = `https://wa.me/${wa}?text=${encodeURIComponent(text)}`;
+    // Floating WhatsApp button on every page, with a small message bubble that
+    // pops up once per visit (see main.js).
     out += `
-<a class="wa-float" href="https://wa.me/${wa}?text=${encodeURIComponent(text)}" rel="noopener" data-contact="whatsapp" data-wa-base="https://wa.me/${wa}" data-wa-text="${esc(t.ui.whatsappMessage)}" aria-label="${esc(t.ui.whatsapp)}">${brandIcon("whatsapp")}</a>`;
+<div class="wa-widget" data-wa-widget data-wa-base="https://wa.me/${wa}" data-wa-text="${esc(t.ui.whatsappMessage)}">
+  <div class="wa-bubble" hidden data-wa-bubble>
+    <button type="button" class="wa-bubble-close" aria-label="${ctx.lang === "ar" ? "إغلاق" : "Close"}" data-wa-close>${icon("x")}</button>
+    <a href="${href}" rel="noopener" target="_blank" data-contact="whatsapp" data-wa-link>
+      <strong>${esc(t.ui.whatsappBubbleTitle || "")}</strong>
+      <span>${esc(t.ui.whatsappBubbleText || "")}</span>
+    </a>
+  </div>
+  <a class="wa-float" href="${href}" rel="noopener" target="_blank" data-contact="whatsapp" data-wa-link aria-label="${esc(t.ui.whatsapp)}" title="${esc(t.ui.whatsapp)}">${brandIcon("whatsapp")}</a>
+</div>`;
   }
   if (config.gtmId) {
     out += `

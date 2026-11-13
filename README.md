@@ -139,4 +139,4 @@ npm run og
 - Dashboard: [Decap CMS](https://decapcms.org) — MIT License
 - Fonts: [IBM Plex Sans Arabic](https://fonts.google.com/specimen/IBM+Plex+Sans+Arabic) and [Montserrat](https://fonts.google.com/specimen/Montserrat) — SIL Open Font License
 - Line icons: [Feather Icons](https://feathericons.com) — MIT License
-- Brand glyphs (WhatsApp, LinkedIn, X): [Simple Icons](https://simpleicons.org) — CC0 1.0
+- Brand glyphs (WhatsApp, LinkedIn, X, Instagram, Snapchat): [Simple Icons](https://simpleicons.org) — CC0 1.0

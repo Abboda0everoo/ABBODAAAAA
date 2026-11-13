@@ -72,6 +72,7 @@ export function organization(ctx) {
     areaServed: ["Saudi Arabia", "Egypt", "United Arab Emirates", "Iraq"].map((name) => ({ "@type": "Country", name })),
     ...(email ? { email } : {}),
     ...(phone ? { telephone: phone } : {}),
+    ...(config.social.length ? { sameAs: config.social.map((s) => s.url) } : {}),
     ...(email || phone
       ? { contactPoint: { "@type": "ContactPoint", contactType: "customer service", availableLanguage: ["Arabic", "English"], ...(email ? { email } : {}), ...(phone ? { telephone: phone } : {}) } }
       : {}),
