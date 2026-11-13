@@ -45,7 +45,7 @@ Fill in **Settings → بيانات التواصل والربط** in the dashboa
 | `contact.email`, `contact.phone` | Shown on the contact page, home page and footer as working links. Until set, bracketed placeholders are shown. |
 | `contact.whatsapp` | Digits only, e.g. `9665XXXXXXXX`. Turns on the floating WhatsApp button (its message names the current page). |
 | `formEndpoint` | Where the contact form posts (JSON `POST`, any 2xx = success) — e.g. Formspree, Getform or your own API. Without it, the form opens the visitor's email app addressed to `contact.email`; with neither, it says the form isn't connected yet. |
-| `gtmId` | Google Tag Manager container. Shows a cookie-consent banner and loads GTM only after the visitor accepts. The site pushes `generate_lead` (form sent) and `contact_click` (phone / email / WhatsApp) events to `dataLayer`. |
+| `gtmId` | Google Tag Manager container. Shows a cookie-consent banner and loads GTM only after the visitor accepts. The site pushes `generate_lead` (form sent), `click_phone` / `click_email` / `click_whatsapp`, `language_switch` and `view_service` events to `dataLayer` — never what a visitor typed. |
 
 Also review before launch:
 
@@ -74,12 +74,14 @@ The build is forgiving about content: an English text left empty falls back to t
 
 ```
 build.mjs                 # generates dist/ from src/ (and dist/admin/config.yml)
-netlify.toml              # Netlify build settings
+netlify.toml              # Netlify build settings, security and cache headers
 scripts/serve.mjs         # local preview server
+scripts/check.mjs         # SEO / link / schema checks on dist/ (npm test)
 scripts/og.mjs            # optional: regenerates the per-page share images (needs Playwright)
 src/
   content/                # all text and settings as JSON (edited from the dashboard)
-  content.mjs             # loads the JSON, renders Markdown
+  content.mjs             # loads the JSON, renders Markdown, last-modified dates from git
+  seo.mjs                 # head metadata and site-wide structured data
   admin/                  # dashboard: page, Arabic interface, config generator
   templates/layout.mjs    # <head>, header, footer, widgets
   templates/components.mjs# reusable sections (cards, steps, FAQ, form, …)
@@ -93,13 +95,26 @@ dist/                     # built site — deploy this folder (not committed)
 
 ## SEO and quality built in
 
+SEO logic lives in `src/seo.mjs` (head tags, Organization/WebSite schema). Full audit and change log: **[docs/SEO-REPORT.md](docs/SEO-REPORT.md)** (Arabic).
+
+
 - A hand-written title and description per page, in the page's language, and a share image per page (`src/assets/og/`).
 - One `<h1>` per page; short Latin URLs for both languages.
-- Structured data: `Organization` + `ProfessionalService` (home), `Service` + `FAQPage` (service pages), `Article` (articles), `BreadcrumbList` (when `siteUrl` is set).
+- Structured data: one `Organization` + `WebSite` with fixed `@id`s on every page; `ProfessionalService` (home), `Service` + `FAQPage` (service pages), `BlogPosting` (articles, with optional author), `BreadcrumbList` (when `siteUrl` is set).
+- `robots.txt` names Googlebot, Bingbot, OAI-SearchBot, ChatGPT-User, PerplexityBot and Claude-SearchBot explicitly; `llms.txt` lists the published pages. Sitemap `lastmod` comes from the git history of each page's content files, so rebuilding doesn't change it.
+- Any page, service or article can be hidden from search engines from the dashboard (noindex + left out of the sitemap and `llms.txt`).
 - All numbers and text are in the HTML; JavaScript only adds enhancements (rotator, filters, form handling).
 - Self-hosted fonts with `font-display: swap`; WebP images; lazy loading below the fold; pages weigh roughly 400–650 KB.
 - Respects reduced-motion settings (the logo marquee, rotator and hero animation stop).
 - Keyboard navigation, visible focus, labelled form fields with inline errors, and WCAG AA colour pairs from the design system.
+
+## Checks
+
+```bash
+npm test   # builds with SITE_URL=https://ampliq.netlify.app, then checks dist/
+```
+
+`scripts/check.mjs` fails on broken internal links, missing/duplicate canonical, non-reciprocal hreflang, sitemap entries that aren't indexable pages, invalid JSON-LD, a wrong `lang`/`dir`, or anything that looks like a secret key; it warns on duplicate or over-long titles and descriptions.
 
 ## Share images
 

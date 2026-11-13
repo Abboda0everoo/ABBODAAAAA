@@ -88,6 +88,18 @@ function bilingualFields(data, shared = []) {
 
 const tweak = (fields, name, patch) => fields.map((f) => (f.name === name ? { ...f, ...patch } : f));
 
+// "Hide from search engines": shared by both languages of a page. The page stays
+// online but gets a noindex tag and is left out of the sitemap and llms.txt.
+const NOINDEX_FIELD = {
+  name: "noindex",
+  label: "إخفاء الصفحة من محركات البحث (noindex)",
+  widget: "boolean",
+  default: false,
+  required: false,
+  i18n: "duplicate",
+  hint: "فعّله فقط لصفحة غير مكتملة أو خاصة. تبقى الصفحة على الموقع لكنها لا تظهر في Google ولا في خريطة الموقع.",
+};
+
 const SLUG_FIELD = {
   pattern: ["^[a-z0-9]+(-[a-z0-9]+)*$", "حروف إنجليزية صغيرة وأرقام وشرطات فقط، مثل: marketing-tips"],
   hint: "يظهر في رابط الصفحة. اكتبه بالإنجليزية ولا تغيّره بعد النشر.",
@@ -130,7 +142,11 @@ export function cmsConfig({ siteUrl = "" } = {}) {
       { name: "body", label: "نص المقال", widget: "markdown", i18n: true, buttons: ["bold", "italic", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"], editor_components: ["image"], sanitize_preview: true, hint: "العناوين الرئيسية (H2) تظهر في فهرس المقال." },
       { name: "description", label: "وصف محركات البحث", widget: "text", required: false, i18n: true, hint: "اختياري. إن تُرك فارغاً يُستخدم الملخص." },
       { name: "icon", label: "أيقونة الغلاف", widget: "select", options: iconOptions, required: false, i18n: "duplicate", hint: "تظهر عند عدم وجود صورة غلاف. الافتراضي: أيقونة الخدمة." },
+      { name: "updated", label: "تاريخ آخر تحديث للمحتوى", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false, i18n: "duplicate", hint: "اختياري. اضبطه عند تحديث معلومات المقال فعلياً (لا لتصحيح خطأ إملائي)." },
+      { name: "author", label: "اسم الكاتب", widget: "string", required: false, i18n: true, hint: "اختياري. اسم شخص حقيقي من الفريق. بدونه يُنسب المقال إلى Ampliq." },
+      { name: "authorRole", label: "صفة الكاتب", widget: "string", required: false, i18n: true, hint: "اختياري. مثل: مدير التسويق." },
       { name: "draft", label: "مسودة (لا تُنشر)", widget: "boolean", default: false, required: false, i18n: "duplicate" },
+      NOINDEX_FIELD,
     ],
   };
 
@@ -156,7 +172,7 @@ export function cmsConfig({ siteUrl = "" } = {}) {
     sortable_fields: ["order", "title"],
     i18n: true,
     editor: { preview: false },
-    fields: serviceFields,
+    fields: [...serviceFields, NOINDEX_FIELD],
   };
 
   // ---- Pages ----
@@ -179,7 +195,7 @@ export function cmsConfig({ siteUrl = "" } = {}) {
           : { ...f, fields: f.fields.map((g) => (g.name !== "people" ? g : { ...g, fields: g.fields.map((h) => (h.name === "photo" ? { ...h, media_folder: "/src/assets/img/team", public_folder: "/assets/img/team", hint: "صورة عمودية (720×1032 تقريباً). ارفعها في النسختين العربية والإنجليزية." } : h)) })) }
       );
     }
-    return { name: key, label: lbl, file: `${CONTENT}/pages/${key}.json`, i18n: true, fields };
+    return { name: key, label: lbl, file: `${CONTENT}/pages/${key}.json`, i18n: true, fields: key === "home" ? fields : [...fields, NOINDEX_FIELD] };
   };
   const pagesCollection = {
     name: "pages",

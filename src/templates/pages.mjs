@@ -1,6 +1,7 @@
 // One renderer per page template. Each returns { meta, body, navKey, jsonld }.
 
 import { esc, txt, latin, icon, brandIcon, formatDate } from "../lib.mjs";
+import { orgRef } from "../seo.mjs";
 import {
   waves, sectionHead, pageHero, iconCard, stats, numbersBand, approach, cardGrid, models, logoTile, marquee,
   faq, ctaBand, contactInfo, nextSteps, contactForm, articleCard, resultsPanel, serviceRows, serviceCards,
@@ -8,14 +9,8 @@ import {
 
 // ---------- structured data ----------
 const absUrl = (ctx, p) => (ctx.config.siteUrl ? `${ctx.config.siteUrl}/${p}` : undefined);
-const org = (ctx) => ({
-  "@type": "Organization",
-  name: "Ampliq",
-  slogan: "Amplify Your Business Impact",
-  ...(ctx.config.siteUrl ? { url: `${ctx.config.siteUrl}/`, logo: absUrl(ctx, "assets/icons/icon-512.png") } : {}),
-  ...(ctx.config.contact.email ? { email: ctx.config.contact.email } : {}),
-  ...(ctx.config.contact.phone ? { telephone: ctx.config.contact.phone } : {}),
-});
+// The full Organization is in every page's site graph (src/seo.mjs); here it is referenced by @id.
+const org = orgRef;
 function breadcrumbLd(ctx, crumbs) {
   if (!ctx.config.siteUrl) return [];
   const items = [{ label: ctx.t.ui.home, key: "home" }, ...crumbs];
@@ -113,16 +108,18 @@ export function home(ctx) {
   </section>`;
 
   const jsonld = [
-    { "@context": "https://schema.org", ...org(ctx), description: p.meta.description, areaServed: ["SA", "EG", "AE", "IQ"] },
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
+      ...(ctx.config.siteUrl ? { "@id": `${ctx.config.siteUrl}/#business` } : {}),
       name: "Ampliq",
+      parentOrganization: org(ctx),
       description: p.meta.description,
       address: { "@type": "PostalAddress", addressLocality: lang === "ar" ? "الرياض" : "Riyadh", addressCountry: "SA" },
       areaServed: "SA",
       ...(ctx.config.siteUrl ? { url: `${ctx.config.siteUrl}/${ctx.path}`, image: absUrl(ctx, ctx.ogFile) } : {}),
       ...(ctx.config.contact.phone ? { telephone: ctx.config.contact.phone } : {}),
+      ...(ctx.config.contact.email ? { email: ctx.config.contact.email } : {}),
     },
   ];
   return { meta: p.meta, body, navKey: "home", jsonld };
@@ -198,7 +195,7 @@ export function about(ctx) {
   </section>
   ${ctaBand(ctx)}`;
   const people = p.leadership.people.map((x) => ({ "@type": "Person", name: x.name, jobTitle: x.role }));
-  return { meta: p.meta, body, navKey: "about", jsonld: [{ "@context": "https://schema.org", "@type": "AboutPage", name: p.meta.title, description: p.meta.description, about: { ...org(ctx), employee: people } }, ...breadcrumbLd(ctx, crumbs)] };
+  return { meta: p.meta, body, navKey: "about", jsonld: [{ "@context": "https://schema.org", "@type": "AboutPage", name: p.meta.title, description: p.meta.description, about: { ...org(ctx) }, mentions: people }, ...breadcrumbLd(ctx, crumbs)] };
 }
 
 export function services(ctx) {
@@ -264,7 +261,8 @@ export function service(ctx, s) {
       serviceType: s.title,
       description: s.meta.description,
       provider: org(ctx),
-      areaServed: { "@type": "Country", name: "SA" },
+      areaServed: { "@type": "Country", name: "Saudi Arabia" },
+      inLanguage: lang,
       hasOfferCatalog: { "@type": "OfferCatalog", name: s.offer.title, itemListElement: s.offer.items.map((o) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: o.title, description: o.text } })) },
       ...(ctx.config.siteUrl ? { url: absUrl(ctx, ctx.path) } : {}),
     },
@@ -332,7 +330,7 @@ export function article(ctx, a) {
   ${pageHero(ctx, {
     title: a.title,
     crumbs,
-    extra: `<p class="post-meta post-meta--hero"><span class="pill pill--dark">${esc(a.category)}</span>${icon("calendar")}<time datetime="${a.date}">${esc(formatDate(a.date, t.dateLocale))}</time><span aria-hidden="true">·</span>${icon("clock")}<span>${esc(t.ui.readTime(a.minutes))}</span><span aria-hidden="true">·</span><span>${txt(t.ui.by, lang)}</span></p>`,
+    extra: `<p class="post-meta post-meta--hero"><span class="pill pill--dark">${esc(a.category)}</span>${icon("calendar")}<time datetime="${a.date}">${esc(formatDate(a.date, t.dateLocale))}</time><span aria-hidden="true">·</span>${icon("clock")}<span>${esc(t.ui.readTime(a.minutes))}</span><span aria-hidden="true">·</span><span>${a.author ? `${esc(a.author)}${a.authorRole ? `${lang === "ar" ? "، " : ", "}${esc(a.authorRole)}` : ""}` : txt(t.ui.by, lang)}</span></p>`,
   })}
   <section class="section">
     <div class="container article-grid${heads.length ? "" : " article-grid--solo"}">
@@ -365,13 +363,14 @@ export function article(ctx, a) {
   const jsonld = [
     {
       "@context": "https://schema.org",
-      "@type": "Article",
+      "@type": "BlogPosting",
       headline: a.title,
       description: a.description,
       datePublished: a.date,
-      dateModified: a.date,
+      dateModified: a.modified || a.date,
       inLanguage: lang,
-      author: org(ctx),
+      articleSection: a.category,
+      author: a.author ? { "@type": "Person", name: a.author, ...(a.authorRole ? { jobTitle: a.authorRole } : {}), worksFor: org(ctx) } : org(ctx),
       publisher: org(ctx),
       ...(ctx.config.siteUrl ? { mainEntityOfPage: absUrl(ctx, ctx.path), image: absUrl(ctx, ctx.ogFile) } : {}),
     },

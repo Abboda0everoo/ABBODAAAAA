@@ -31,6 +31,7 @@
   // ---------- Language switch keeps the current section ----------
   document.querySelectorAll("[data-lang-switch]").forEach((a) =>
     a.addEventListener("click", () => {
+      track("language_switch", { from: config.lang, to: a.getAttribute("hreflang") || "" });
       if (!window.location.hash) return;
       const url = new URL(a.href);
       url.hash = window.location.hash;
@@ -107,11 +108,13 @@
   const wa = document.querySelector(".wa-float");
   if (wa) wa.href = `${wa.dataset.waBase}?text=${encodeURIComponent(`${wa.dataset.waText} ${document.title} — ${window.location.href.split("#")[0]}`)}`;
 
-  // ---------- Conversion events for direct contact ----------
+  // ---------- Analytics events (dataLayer → Google Tag Manager) ----------
+  // Only the method and page are sent — never what a visitor typed or their contact details.
   document.addEventListener("click", (e) => {
     const link = e.target.closest("[data-contact]");
-    if (link) track("contact_click", { method: link.dataset.contact });
+    if (link) track(`click_${link.dataset.contact}`, { method: link.dataset.contact });
   });
+  if (config.page?.startsWith("service:")) track("view_service", { service: config.page.slice(8) });
 
   // ---------- Contact form ----------
   const MOBILE = /^(?:\+?966|0)?5\d{8}$/;

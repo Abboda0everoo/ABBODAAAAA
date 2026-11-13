@@ -5,7 +5,7 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { loadContent, contentWarnings, LANGS } from "./src/content.mjs";
+import { loadContent, contentWarnings, lastModified, latestDate, LANGS } from "./src/content.mjs";
 import { cmsConfig } from "./src/admin/config.mjs";
 import { relLink, relFile } from "./src/lib.mjs";
 import { renderDocument } from "./src/templates/layout.mjs";
@@ -26,6 +26,33 @@ const routePath = (lang, key) => {
   if (!(key in ROUTES)) throw new Error(`Unknown route: ${key}`);
   return prefix + ROUTES[key];
 };
+
+// Pages hidden from search engines (dashboard → "hide from search engines").
+// The flag is shared by both languages of a page.
+function isNoindex(key) {
+  const t = content.ar;
+  if (key.startsWith("service:")) return Boolean(t.services.find((s) => s.slug === key.slice(8))?.noindex);
+  if (key.startsWith("article:")) return Boolean(t.posts.find((a) => a.slug === key.slice(8))?.noindex);
+  return Boolean(t.pages[key]?.noindex);
+}
+
+// Last real content change per page (git history of the files it shows), for
+// the sitemap. Navigation/footer texts (general.json) are left out on purpose.
+function pageModified(key) {
+  if (key.startsWith("service:")) return lastModified(`services/${key.slice(8)}.json`);
+  if (key.startsWith("article:")) return posts.find((a) => a.slug === key.slice(8))?.modified;
+  const files = {
+    home: ["pages/home.json", "shared.json", "services", "blog", "clients.json"],
+    about: ["pages/about.json", "shared.json"],
+    services: ["pages/services.json", "shared.json", "services"],
+    clients: ["pages/clients.json", "shared.json", "clients.json"],
+    blog: ["pages/blog.json", "blog"],
+    contact: ["pages/contact.json"],
+  }[key];
+  if (files) return lastModified(...files);
+  if (key === "privacy" || key === "terms") return latestDate(content.ar.pages[key].updated, lastModified(`pages/${key}.json`));
+  return "";
+}
 
 // ---------- assets ----------
 await rm(OUT, { recursive: true, force: true });
@@ -84,11 +111,14 @@ function makeCtx(lang, key, { absolute = false } = {}) {
     articles: t.posts,
     ogFile,
     assetVersion,
+    noindex: isNoindex(key),
   };
 }
 
 const sitemap = { ar: [], en: [] };
-async function emit(lang, key, page, lastmod = BUILD_DATE) {
+let count = 0;
+const published = { ar: [], en: [] }; // indexable pages, for llms.txt
+async function emit(lang, key, page) {
   const ctx = makeCtx(lang, key);
   const result = typeof page === "function" ? page(ctx) : page;
   const html = renderDocument(ctx, result);
@@ -96,10 +126,13 @@ async function emit(lang, key, page, lastmod = BUILD_DATE) {
   if (h1s !== 1) throw new Error(`${ctx.path || "/"}: expected one <h1>, found ${h1s}`);
   await mkdir(`${OUT}/${ctx.path}`, { recursive: true });
   await writeFile(`${OUT}/${ctx.path}index.html`, html);
-  sitemap[lang].push({ path: ctx.path, alt: ctx.hasAlt ? ctx.altPath : null, lastmod });
+  count++;
+  if (ctx.noindex) return;
+  sitemap[lang].push({ path: ctx.path, alt: ctx.hasAlt ? ctx.altPath : null, lastmod: pageModified(key) || BUILD_DATE });
+  const meta = result.meta;
+  published[lang].push({ key, path: ctx.path, title: meta.title, description: meta.description });
 }
 
-let count = 0;
 for (const lang of LANGS) {
   const t = content[lang];
   await emit(lang, "home", pages.home);
@@ -107,12 +140,11 @@ for (const lang of LANGS) {
   await emit(lang, "services", pages.services);
   for (const s of t.services) await emit(lang, `service:${s.slug}`, (ctx) => pages.service(ctx, s));
   await emit(lang, "clients", pages.clients);
-  await emit(lang, "blog", pages.blog, posts[0]?.date ?? BUILD_DATE);
-  for (const a of t.posts) await emit(lang, `article:${a.slug}`, (ctx) => pages.article(ctx, a), a.date);
+  await emit(lang, "blog", pages.blog);
+  for (const a of t.posts) await emit(lang, `article:${a.slug}`, (ctx) => pages.article(ctx, a));
   await emit(lang, "contact", pages.contact);
-  await emit(lang, "privacy", (ctx) => pages.legal(ctx, "privacy"), t.pages.privacy.updated);
-  await emit(lang, "terms", (ctx) => pages.legal(ctx, "terms"), t.pages.terms.updated);
-  count += sitemap[lang].length;
+  await emit(lang, "privacy", (ctx) => pages.legal(ctx, "privacy"));
+  await emit(lang, "terms", (ctx) => pages.legal(ctx, "terms"));
 }
 
 // 404: served for unknown paths at any depth, so it uses root-absolute URLs.
@@ -120,7 +152,7 @@ for (const lang of LANGS) {
   const ctx = makeCtx("ar", "home", { absolute: true });
   const html = renderDocument(ctx, pages.notFound(ctx, content.en))
     .replace(/\n<link rel="(canonical|alternate)"[^>]*>|\n<meta property="og:url"[^>]*>/g, "")
-    .replace('<meta name="description"', '<meta name="robots" content="noindex">\n<meta name="description"');
+    .replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex">');
   await writeFile(`${OUT}/404.html`, html);
 }
 
@@ -152,7 +184,26 @@ await writeFile(
   ) + "\n"
 );
 
-await writeFile(`${OUT}/robots.txt`, `User-agent: *\nAllow: /\nDisallow: /admin/\n${siteUrl ? `\nSitemap: ${siteUrl}/sitemap.xml\n` : ""}`);
+// ---------- crawl files ----------
+// Search and AI-answer crawlers are named explicitly so a later rule for "*"
+// can't shut them out by accident. GPTBot (model training, not ChatGPT search)
+// follows the "*" group: allowed unless the company decides otherwise.
+const SEARCH_BOTS = ["Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Claude-SearchBot"];
+await writeFile(
+  `${OUT}/robots.txt`,
+  `# Ampliq — public pages are open to search engines and AI answer engines.
+# /admin/ is the content dashboard (protected by GitHub login, not by this file).
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+${SEARCH_BOTS.map((b) => `User-agent: ${b}`).join("\n")}
+Allow: /
+Disallow: /admin/
+${siteUrl ? `\nSitemap: ${siteUrl}/sitemap.xml\n` : ""}`
+);
+
 if (siteUrl) {
   const xml = (entries) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -174,22 +225,70 @@ ${entries
   .join("\n")}
 </urlset>
 `;
+  const newest = (entries) => latestDate(...entries.map((e) => e.lastmod)) || BUILD_DATE;
   await writeFile(`${OUT}/sitemap-ar.xml`, xml(sitemap.ar));
   await writeFile(`${OUT}/sitemap-en.xml`, xml(sitemap.en));
   await writeFile(
     `${OUT}/sitemap.xml`,
     `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap><loc>${siteUrl}/sitemap-ar.xml</loc><lastmod>${BUILD_DATE}</lastmod></sitemap>
-  <sitemap><loc>${siteUrl}/sitemap-en.xml</loc><lastmod>${BUILD_DATE}</lastmod></sitemap>
+  <sitemap><loc>${siteUrl}/sitemap-ar.xml</loc><lastmod>${newest(sitemap.ar)}</lastmod></sitemap>
+  <sitemap><loc>${siteUrl}/sitemap-en.xml</loc><lastmod>${newest(sitemap.en)}</lastmod></sitemap>
 </sitemapindex>
 `
   );
+
+  // llms.txt: a plain-text map of the published pages for AI tools. Built only
+  // from what the site itself publishes; no guarantee any platform reads it.
+  const en = content.en;
+  const ar = content.ar;
+  const list = (lang, keys) =>
+    published[lang]
+      .filter((p) => keys(p.key))
+      .map((p) => `- [${p.title.replace(/\s*\|\s*Ampliq$/, "")}](${siteUrl}/${p.path}): ${p.description}`)
+      .join("\n");
+  const contactLines = [
+    `- Contact page: ${siteUrl}/en/contact/`,
+    config.contact.email && `- Email: ${config.contact.email}`,
+    config.contact.phone && `- Phone and WhatsApp: ${config.contact.phone}`,
+    `- Location: ${en.contact.location}`,
+  ].filter(Boolean);
+  const core = (k) => ["home", "about", "services", "clients", "contact"].includes(k);
+  const section = (title, body) => (body ? `## ${title}\n\n${body}\n` : "");
+  await writeFile(
+    `${OUT}/llms.txt`,
+    `# Ampliq
+
+> ${en.pages.home.meta.description}
+
+Ampliq (AMPLIQ) — "${en.ui.tagline}". The website is bilingual: Arabic at the root (${siteUrl}/) and English under ${siteUrl}/en/. Descriptions below are taken from the published pages.
+
+${section("Services", list("en", (k) => k.startsWith("service:")))}
+${section("Company", list("en", core))}
+${section("Insights", list("en", (k) => k.startsWith("article:")))}
+## Contact
+
+${contactLines.join("\n")}
+
+## بالعربية
+
+> ${ar.pages.home.meta.description}
+
+${section("الخدمات", list("ar", (k) => k.startsWith("service:")))}
+${section("الشركة", list("ar", core))}
+${section("المقالات", list("ar", (k) => k.startsWith("article:")))}
+## Optional
+
+- [Sitemap](${siteUrl}/sitemap.xml)
+- [Privacy policy](${siteUrl}/en/privacy/)
+- [Terms of use](${siteUrl}/en/terms/)
+`.replace(/\n{3,}/g, "\n\n")
+  );
 }
 
-console.log(`Built ${count} pages (${sitemap.ar.length} Arabic, ${sitemap.en.length} English) + 404 + /admin/ into ${OUT}/ — assets v${assetVersion}`);
+console.log(`Built ${count} pages (${sitemap.ar.length + sitemap.en.length} indexable) + 404 + /admin/ into ${OUT}/ — assets v${assetVersion}`);
 for (const w of contentWarnings()) console.log(`Warning: ${w}`);
 const missing = Object.entries(config.contact).filter(([, v]) => !v).map(([k]) => k);
 if (missing.length) console.log(`Note: contact ${missing.join(", ")} not set (dashboard → Settings) — placeholders are shown.`);
 if (!config.form.endpoint) console.log("Note: form endpoint not set — the form falls back to email" + (config.contact.email ? "." : " (also not set)."));
-if (!siteUrl) console.log("Note: site URL not set — canonical/hreflang tags and sitemaps are skipped.");
+if (!siteUrl) console.log("Note: site URL not set — canonical/hreflang tags, sitemaps and llms.txt are skipped.");

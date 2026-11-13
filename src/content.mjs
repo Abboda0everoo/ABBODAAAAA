@@ -4,6 +4,7 @@
 
 import { readFile, readdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { Marked } from "marked";
 
 const DIR = "src/content";
@@ -18,6 +19,24 @@ const READ_TIME = {
   ar: (n) => (n <= 2 ? (n === 1 ? "دقيقة قراءة" : "دقيقتا قراءة") : n <= 10 ? `${n} دقائق قراءة` : `${n} دقيقة قراءة`),
   en: (n) => `${n} min read`,
 };
+
+// Date (YYYY-MM-DD) of the last commit that touched any of the given content
+// paths (relative to src/content). This is a real "last modified" date for the
+// sitemap and article schema, so a rebuild alone never changes it. Empty when
+// git or its history is unavailable.
+const gitDates = new Map();
+export function lastModified(...paths) {
+  const key = paths.join("|");
+  if (!gitDates.has(key)) {
+    let date = "";
+    try {
+      date = execFileSync("git", ["log", "-1", "--format=%cs", "--", ...paths.map((p) => `${DIR}/${p}`)], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+    } catch { /* not a git checkout */ }
+    gitDates.set(key, date);
+  }
+  return gitDates.get(key);
+}
+export const latestDate = (...dates) => dates.filter(Boolean).sort().at(-1) || "";
 
 const warnings = [];
 export const contentWarnings = () => warnings;
@@ -134,10 +153,10 @@ export async function loadContent() {
       contact: g.contact,
       form: g.form,
       shared: pick(shared, lang, "shared.json"),
-      services: services.map((s) => ({ ...pick(s.data, lang, `services/${s.slug}.json`), slug: s.slug })),
+      services: services.map((s) => ({ ...pick(s.data, lang, `services/${s.slug}.json`), slug: s.slug, noindex: Boolean(s.data.ar?.noindex) })),
       pages: {},
     };
-    for (const k of pageKeys) t.pages[k] = pick(pages[k], lang, `pages/${k}.json`);
+    for (const k of pageKeys) t.pages[k] = { ...pick(pages[k], lang, `pages/${k}.json`), noindex: Boolean(pages[k].ar?.noindex) };
     for (const k of ["privacy", "terms"]) t.pages[k] = { ...t.pages[k], ...renderMarkdown(t.pages[k].body) };
     t.pages.notFound = g.notFound;
     // An article without an English title and body is published in Arabic only.
@@ -156,6 +175,11 @@ export async function loadContent() {
         title: a.title,
         excerpt: a.excerpt,
         description: a.description || a.excerpt,
+        // Optional byline; without it the article is attributed to Ampliq.
+        author: a.author || shared.author || "",
+        authorRole: a.authorRole || shared.authorRole || "",
+        modified: latestDate(a.date || shared.date, shared.updated, lastModified(`blog/${p.slug}.json`)),
+        noindex: Boolean(shared.noindex),
         ...renderMarkdown(a.body),
       };
     });

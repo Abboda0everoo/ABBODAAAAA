@@ -1,6 +1,7 @@
 // Page shell: <head> metadata, header, footer and site-wide widgets.
 
 import { esc, txt, icon, brandIcon, num } from "../lib.mjs";
+import { headTags, siteGraph } from "../seo.mjs";
 
 const FONT_PRELOAD = {
   ar: ["fonts/plex-arabic-arabic-400.woff2", "fonts/plex-arabic-arabic-700.woff2"],
@@ -117,49 +118,28 @@ function widgets(ctx, title) {
 
 export function renderDocument(ctx, page) {
   const { t, lang, config } = ctx;
-  const { meta, body, navKey = null, jsonld = [], ogType = "website" } = page;
-  const abs = (p) => (config.siteUrl ? `${config.siteUrl}/${p}` : "");
-  const ogImage = config.siteUrl ? abs(ctx.ogFile) : ctx.asset(ctx.ogFile.replace(/^assets\//, ""));
-  const seo = config.siteUrl
-    ? `
-<link rel="canonical" href="${abs(ctx.path)}">
-${ctx.hasAlt ? `<link rel="alternate" hreflang="${lang}" href="${abs(ctx.path)}">
-<link rel="alternate" hreflang="${ctx.other.lang}" href="${abs(ctx.altPath)}">
-<link rel="alternate" hreflang="x-default" href="${abs(ctx.arPath)}">` : ""}
-<meta property="og:url" content="${abs(ctx.path)}">`
-    : "";
+  const { meta, body, navKey = null, jsonld = [] } = page;
   const siteConfig = {
     lang,
     gtmId: config.gtmId || "",
     formEndpoint: config.form.endpoint || "",
     email: config.contact.email || "",
+    page: ctx.key,
   };
   return `<!doctype html>
 <html lang="${lang}" dir="${t.dir}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>${esc(meta.title)}</title>
-<meta name="description" content="${esc(meta.description)}">
-<meta name="theme-color" content="#07111F">${config.googleVerification ? `
-<meta name="google-site-verification" content="${esc(config.googleVerification)}">` : ""}${seo}
-<meta property="og:type" content="${ogType}">
-<meta property="og:site_name" content="Ampliq">
-<meta property="og:title" content="${esc(meta.title)}">
-<meta property="og:description" content="${esc(meta.description)}">
-<meta property="og:locale" content="${t.locale}">
-<meta property="og:locale:alternate" content="${ctx.other.t.locale}">
-<meta property="og:image" content="${esc(ogImage)}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
+${headTags(ctx, page)}
+<meta name="theme-color" content="#07111F">
 <link rel="icon" href="${ctx.asset("icons/favicon.ico")}" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="${ctx.asset("icons/favicon-32.png")}">
 <link rel="apple-touch-icon" href="${ctx.asset("icons/apple-touch-icon.png")}">
 <link rel="manifest" href="${ctx.file("site.webmanifest")}">
 ${FONT_PRELOAD[lang].map((f) => `<link rel="preload" href="${ctx.asset(f)}" as="font" type="font/woff2" crossorigin>`).join("\n")}
 <link rel="stylesheet" href="${ctx.asset("css/main.css")}?v=${ctx.assetVersion}">
-${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, "\\u003c")}</script>`).join("\n")}
+${[siteGraph(ctx), ...jsonld].map((j) => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, "\\u003c")}</script>`).join("\n")}
 <script id="site-config" type="application/json">${JSON.stringify(siteConfig)}</script>
 </head>
 <body>
