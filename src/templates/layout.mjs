@@ -157,8 +157,7 @@ ${headTags(ctx, page)}
 <link rel="manifest" href="${ctx.file("site.webmanifest")}">
 ${FONT_PRELOAD[lang].map((f) => `<link rel="preload" href="${ctx.asset(f)}" as="font" type="font/woff2" crossorigin>`).join("\n")}
 <link rel="stylesheet" href="${ctx.asset("css/main.css")}?v=${ctx.assetVersion}">${config.gtmId ? gtmHead(config.gtmId) : ""}
-${[siteGraph(ctx), ...jsonld].map((j) => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, "\u003c")}</script>`).join("
-")}
+${[siteGraph(ctx), ...jsonld].map((j) => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, "\\u003c")}</script>`).join("\n")}
 <script id="site-config" type="application/json">${JSON.stringify(siteConfig)}</script>
 </head>
 <body>
